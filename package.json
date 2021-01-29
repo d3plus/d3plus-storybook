@@ -1,0 +1,40 @@
+{
+  "name": "d3plus-storybook",
+  "version": "1.0.0",
+  "description": "Documentation and examples for the d3plus visualization library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3plus/d3plus-storybook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d3plus/d3plus-storybook/issues"
+  },
+  "homepage": "https://github.com/d3plus/d3plus-storybook#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-essentials": "^6.1.15",
+    "@storybook/addon-links": "^6.1.15",
+    "@storybook/react": "^6.1.15",
+    "babel-loader": "^8.2.2"
+  },
+  "dependencies": {
+    "css-loader": "^5.0.1",
+    "d3plus-react": "^0.6.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "sass": "^1.32.5",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^3.9.7"
+  }
+}

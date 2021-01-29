@@ -1,0 +1,5 @@
+.innerZoomElementWrapper {
+  & > * {
+    min-height: 400px;
+  }
+}
