@@ -20,7 +20,7 @@ Primary.args = {
     {parent: "Group 2", id: "delta", value: 29},
     {parent: "Group 2", id: "eta", value: 25}
   ],
-  groupBy: "id"
+  groupBy: ["parent", "id"]
 };
 
 // export const Secondary = Template.bind({});
