@@ -34,6 +34,5 @@ Treemap.propTypes = {
 
 Treemap.defaultProps = {
   data: [],
-  height: 400,
   groupBy: "id"
 };

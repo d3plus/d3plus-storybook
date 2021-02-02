@@ -1,4 +1,4 @@
-import {create} from '@storybook/theming';
+import {create} from "@storybook/theming";
 
 export default create({
 
@@ -12,8 +12,8 @@ export default create({
 //   appBorderRadius: 4,
 
 //   // Typography
-//   fontBase: '"Open Sans", sans-serif',
-//   fontCode: 'monospace',
+  fontBase: "'Roboto', 'Helvetica Neue', 'HelveticaNeue', 'Helvetica', 'Arial', sans-serif",
+  fontCode: "'Roboto Mono', monospace",
 
 //   // Text colors
 //   textColor: 'black',
@@ -30,7 +30,7 @@ export default create({
 //   inputTextColor: 'black',
 //   inputBorderRadius: 4,
 
-//   brandTitle: 'My custom storybook',
-//   brandUrl: 'https://example.com',
-//   brandImage: 'https://placehold.it/350x150',
+  brandTitle: "D3plus",
+  brandUrl: "https://d3plus.org",
+  brandImage: "images/logo.svg"
 });
