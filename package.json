@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "css-loader": "^5.0.1",
-    "d3plus-react": "^0.6.1",
+    "d3plus-react": "^1.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "sass": "^1.32.5",
