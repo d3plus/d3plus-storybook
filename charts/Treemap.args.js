@@ -5,7 +5,9 @@ import {Treemap as D3plusTreemap} from "d3plus-react";
 export const Treemap = ({config}) => <D3plusTreemap config={config} />;
 
 export const argTypes = {
-  ...Viz.argTypes,
+  ...Object.keys(Viz.argTypes)
+    .filter(k => !k.match(/^zoom*/))
+    .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
   sum: {
     type: {
       summary: "string | function",
