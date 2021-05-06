@@ -14,11 +14,22 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
+        # 👇 Checks if the branch is not main and runs Chromatic
       - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/main'
         uses: chromaui/action@v1
-        # Chromatic GitHub Action options
+        # Required options for the Chromatic GitHub Action
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        # 👇 Checks if the branch is main and accepts all changes in Chromatic
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/main'
+        uses: chromaui/action@v1
+        # Required options for the Chromatic GitHub Action
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true # 👈 Option to accept all changes
