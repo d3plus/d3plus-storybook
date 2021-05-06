@@ -1,4 +1,6 @@
 import {formatLocale} from "d3plus-format";
+import {BaseClass} from "d3plus-common";
+const SampleClass = new BaseClass();
 
 export default {
   argTypes: {
@@ -7,9 +9,10 @@ export default {
         summary: "object | string"
       },
       table: {
+        category: "Formatting",
         defaultValue: {
-          summary: "\"en-US\"",
-          detail: JSON.stringify(formatLocale["en-US"], null, 2),
+          summary: SampleClass.locale(),
+          detail: JSON.stringify(formatLocale[SampleClass.locale()], null, 2),
         }
       },
       control: {
