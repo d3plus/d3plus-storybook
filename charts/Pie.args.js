@@ -19,11 +19,11 @@ export const argTypes = {
      */
      innerRadius: {
       type: {
-        summary: "funciton | number"
+        summary: "function | number"
       },
       table: {
         defaultValue: {
-          summary: "funciton | number",
+          summary: "function | number",
           detail: "0"
         }
       },
