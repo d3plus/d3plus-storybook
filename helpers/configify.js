@@ -7,7 +7,7 @@ export default function(args, argTypes) {
    const _acc = acc;
    if (
      args[key] !== undefined &&
-     (argTypes[key].defaultValue === undefined || `${argTypes[key].defaultValue}` !== `${args[key]}`)
+     (argTypes[key].defaultValue === undefined || JSON.stringify(argTypes[key].defaultValue) !== JSON.stringify(args[key]))
    ) _acc[key] = args[key];
    return _acc;
  }, {});
