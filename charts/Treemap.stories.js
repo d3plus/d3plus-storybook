@@ -1,14 +1,14 @@
 import React from 'react';
 import {argTypes, Treemap} from './Treemap.args';
+import configify from "../helpers/configify";
 
 export default {
   title: "Charts/Treemap",
   component: Treemap,
-  argTypes,
-  parameters: {controls: {sort: "requiredFirst"}}
+  argTypes
 };
 
-const Template = (args) => <Treemap config={args} />;
+const Template = (args) => <Treemap config={configify(args)} />;
 
 export const GettingStarted = Template.bind({});
 GettingStarted.args = {

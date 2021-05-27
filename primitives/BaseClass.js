@@ -1,15 +1,22 @@
 import {formatLocale} from "d3plus-format";
+import {BaseClass} from "d3plus-common";
+const SampleClass = new BaseClass();
 
 export default {
   argTypes: {
+
+    /**
+     * category: Formatting
+     */
     locale: {
       type: {
         summary: "object | string"
       },
       table: {
+        category: "Formatting",
         defaultValue: {
-          summary: "\"en-US\"",
-          detail: JSON.stringify(formatLocale["en-US"], null, 2),
+          summary: SampleClass.locale(),
+          detail: JSON.stringify(formatLocale[SampleClass.locale()], null, 2),
         }
       },
       control: {
@@ -22,11 +29,16 @@ The locale passed to this method can either be a locale \`object\` (internal exa
 
 Both 4-character and 2-character codes are accepted (ex. "en" becomes "en-US").`
     },
+
+    /**
+     * category: User Interaction
+     */
     on: {
       type: {
         summary: "object"
       },
       table: {
+        category: "User Interaction",
         defaultValue: {
           summary: "{}"
         }
@@ -37,4 +49,5 @@ Both 4-character and 2-character codes are accepted (ex. "en" becomes "en-US").`
 As with most Array accessor functions, the event \`function\` provided receives the current data point (\`d\`) and index (\`i\`) of that data point in the array as it's 2 arguments.`
     }
   }
+
 }
