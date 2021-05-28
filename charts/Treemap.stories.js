@@ -8,7 +8,7 @@ export default {
   argTypes
 };
 
-const Template = (args) => <Treemap config={configify(args)} />;
+const Template = (args) => <Treemap config={configify(args, argTypes)} />;
 
 export const GettingStarted = Template.bind({});
 GettingStarted.args = {
