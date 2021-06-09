@@ -118,27 +118,30 @@ Setting to \`false\` disables the color scale behavior entirely, reverting back 
     },
     dataCutoff: {
       type: {summary: "number"},
+      defaultValue: SampleViz.dataCutoff(),
       table: {
         category: "Shapes",
-        defaultValue: {summary: "100"}
+        defaultValue: {summary: SampleViz.dataCutoff()}
       },
       control: {type: "number"},
       description: `If the number of visible data points exceeds this number, the default hover behavior will be disabled (helpful for very large visualizations slowing down the DOM with opacity updates).`
     },
     hiddenColor: {
       type: {summary: "string | function"},
+      defaultValue: SampleViz.hiddenColor()(),
       table: {
         category: "Shapes",
-        defaultValue: {summary: "\"#aaa\""}
+        defaultValue: {summary: `\"${SampleViz.hiddenColor()()}\"`}
       },
-      control: {type: "text"},
+      control: {type: "color"},
       description: `The color to be applied to Shapes in a "hidden" state, usually caused by legend filtering.`
     },
     hiddenOpacity: {
       type: {summary: "number | function"},
+      defaultValue: SampleViz.hiddenOpacity()(),
       table: {
         category: "Shapes",
-        defaultValue: {summary: "0.5"}
+        defaultValue: {summary: SampleViz.hiddenOpacity()()}
       },
       control: {type: "range", min: 0, max: 1, step: 0.1},
       description: `The opacity to be applied to Shapes in a "hidden" state, usually caused by legend filtering.`
@@ -202,7 +205,7 @@ import {colorAssign, colorContrast} from "d3plus-color";
 }`
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A Shape config that is used for rendering the primary shapes that represent each data point.`
     },
 
@@ -211,28 +214,29 @@ import {colorAssign, colorContrast} from "d3plus-color";
      */
     colorScaleConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.colorScaleConfig(),
       table: {
         category: "Legends",
         defaultValue: {
           summary: "object",
-          detail: `{
-  scale: "jenks"
-}`}
+          detail: JSON.stringify(SampleViz.colorScaleConfig(), null, 2)}
       },
       control: {type: "object"},
       description: `A ColorScale config that is used for rendering the color scale legend.`
     },
     colorScaleMaxSize: {
       type: {summary: "string | function | false"},
+      defaultValue: SampleViz.colorScaleMaxSize(),
       table: {
         category: "Legends",
-        defaultValue: {summary: "600"}
+        defaultValue: {summary: SampleViz.colorScaleMaxSize()}
       },
       control: {type: "number"},
       description: `Sets the maximum pixel size for drawing the color scale: width for horizontal scales and height for vertical scales.`
     },
     colorScalePadding: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Legends",
         defaultValue: {
@@ -270,6 +274,7 @@ Passing the Boolean \`false\` will disable the color scale from being displayed.
     },
     legend: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Legends",
         defaultValue: {
@@ -317,6 +322,7 @@ function(config, arr) {
     },
     legendPadding: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Legends",
         defaultValue: {
@@ -365,7 +371,7 @@ Passing the Boolean \`false\` will disable the legend from being displayed.`
 }`
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A JavaScript [sort comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) used to sort the data Array provided to the Legend class.
       `
     },
@@ -402,6 +408,7 @@ This method accepts an \`object\` where each key matches a key in the current da
           detail: "resp => resp"
         }
       },
+      control: {type: null},
       description: `A callback function that allows for manipulation of the loaded data, typically when using a URL with a custom payload structure.`
     },
     label: {
@@ -449,6 +456,7 @@ function label(d, i, depth) {
     },
      loadingMessage: {
        type: {summary: "boolean"},
+       defaultValue: true,
        table: {
          category: "Formatting",
          defaultValue: {summary: "true"}
@@ -475,6 +483,7 @@ function label(d, i, depth) {
     },
      noDataMessage: {
        type: {summary: "boolean"},
+       defaultValue: true,
        table: {
          category: "Formatting",
          defaultValue: {summary: "true"}
@@ -515,19 +524,18 @@ function(d, i) {
 }`
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A filter function that determines which Date times should be selected on the timeline. The default behavior will only show the most recent date.
 
 Use this method if you need to modify the default highlighted Date (single or range), as the subsequent value of this function is overwritten whenever the user interacts with the timeline.`
     },
     timeline: {
-      type: {
-        summary: "boolean"
-      },
+      type: {summary: "boolean"},
+      defaultValue: SampleViz.timeline(),
       table: {
         category: "Timeline",
         defaultValue: {
-          summary: "true"
+          summary: SampleViz.timeline()
         }
       },
       control: {type: "boolean"},
@@ -535,6 +543,7 @@ Use this method if you need to modify the default highlighted Date (single or ra
     },
     timelineConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.timelineConfig(),
       table: {
         category: "Timeline",
         defaultValue: {
@@ -547,6 +556,7 @@ Use this method if you need to modify the default highlighted Date (single or ra
     },
     timelinePadding: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Timeline",
         defaultValue: {
@@ -578,6 +588,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
     titleConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.titleConfig(),
       table: {
         category: "Title",
         defaultValue: {
@@ -590,6 +601,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
     titlePadding: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Title",
         defaultValue: {
@@ -621,6 +633,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
     totalConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.totalConfig(),
       table: {
         category: "Total",
         defaultValue: {
@@ -653,6 +666,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
     totalPadding: {
       type: {summary: "boolean | function"},
+      defaultValue: true,
       table: {
         category: "Total",
         defaultValue: {
@@ -673,6 +687,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
      */
     backConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.backConfig(),
       table: {
         category: "User Interaction",
         defaultValue: {
@@ -685,9 +700,10 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
      duration: {
       type: {summary: "number"},
+      defaultValue: SampleViz.duration(),
       table: {
         category: "User Interaction",
-        defaultValue: {summary: "600"}
+        defaultValue: {summary: SampleViz.duration()}
       },
       control: {type: "number"},
       description: `A number of milliseconds that all animations should take to complete. This includes all entering, transitioning, and exiting animation cycles.`
@@ -696,6 +712,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
       type: {
         summary: "boolean | function"
       },
+      defaultValue: true,
       table: {
         category: "User Interaction",
         defaultValue: {
@@ -707,6 +724,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
     },
     tooltipConfig: {
       type: {summary: "object"},
+      defaultValue: SampleViz.tooltipConfig(),
       table: {
         category: "User Interaction",
         defaultValue: {
@@ -725,6 +743,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
       type: {
         summary: "number | function"
       },
+      defaultValue: SampleViz.threshold()(),
       table: {
         category: "Threshold",
         defaultValue: {
@@ -751,6 +770,7 @@ By default, this padding is only applied on screens larger than 600 pixels wide.
       type: {
         summary: "string | function"
       },
+      defaultValue: "Values",
       table: {
         category: "Threshold",
         defaultValue: {
@@ -913,7 +933,7 @@ Passing \`false\` will remove all inline styles.`
           detail: "(d, i) => false"
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A filter function that should return \`true\` if the given data point is in an "active" state, and will then have it's activeStyle and activeOpacity applied.`
     },
     filter: {
@@ -925,7 +945,7 @@ Passing \`false\` will remove all inline styles.`
           detail: "(d, i) => true"
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A filter function that should return \`true\` if the given data point should be displayed.`
     },
     hover: {
@@ -937,7 +957,7 @@ Passing \`false\` will remove all inline styles.`
           detail: "(d, i) => false"
         }
       },
-      control: {type: "object"},
+      control: {type: null},
       description: `A filter function that should return \`true\` if the given data point is in a "hover" state, and will then have it's hoverStyle and hoverOpacity applied.`
     },
 
@@ -946,6 +966,7 @@ Passing \`false\` will remove all inline styles.`
      */
     cache: {
       type: {summary: "boolean"},
+      defaultValue: SampleViz.cache(),
       table: {
         category: "DOM Management",
         defaultValue: {summary: SampleViz.cache()}
@@ -957,27 +978,30 @@ This is helpful for speed when toggling between a few different data URLs while 
     },
     detectResize: {
       type: {summary: "boolean"},
+      defaultValue: SampleViz.detectResize(),
       table: {
         category: "DOM Management",
-        defaultValue: {summary: "true"}
+        defaultValue: {summary: SampleViz.detectResize()}
       },
       control: {type: "boolean"},
       description: `If the width and/or height of a Viz is not staticly defined, it is determined by the size of it's parent element. When this method is set to \`true\`, the Viz will listen for the \`window.onresize\` event and adjust it's dimensions accordingly.`
     },
     detectResizeDelay: {
       type: {summary: "number"},
+      defaultValue: SampleViz.detectResizeDelay(),
       table: {
         category: "DOM Management",
-        defaultValue: {summary: "400"}
+        defaultValue: {summary: SampleViz.detectResizeDelay()}
       },
       control: {type: "number"},
       description: `When resizing the browser window, this is the millisecond delay to trigger the resize event.`
     },
     detectVisible: {
       type: {summary: "boolean"},
+      defaultValue: SampleViz.detectVisible(),
       table: {
         category: "DOM Management",
-        defaultValue: {summary: "true"}
+        defaultValue: {summary: SampleViz.detectVisible()}
       },
       control: {type: "boolean"},
       description: `Toggles whether or not the visualization should try to detect if it visible in the current viewport.
@@ -986,9 +1010,10 @@ When this method is set to \`true\`, the visualization will only be rendered whe
     },
     detectVisibleInterval: {
       type: {summary: "number"},
+      defaultValue: SampleViz.detectVisibleInterval(),
       table: {
         category: "DOM Management",
-        defaultValue: {summary: "1000"}
+        defaultValue: {summary: SampleViz.detectVisibleInterval()}
       },
       control: {type: "number"},
       description: `The interval, in milliseconds, for checking if the visualization is visible on the page.`
@@ -1026,6 +1051,7 @@ In React, this is inferred by the placement of the Component. In vanilla environ
       type: {
         summary: "boolean"
       },
+      defaultValue: SampleViz.ariaHidden(),
       table: {
         category: "Accessibility",
         defaultValue: {
@@ -1052,6 +1078,7 @@ This is most often used in Geomaps to display the copyright of map tiles. The te
     },
     attributionStyle: {
       type: {summary: "object | false"},
+      defaultValue: SampleViz.attributionStyle(),
       table: {
         category: "Accessibility",
         defaultValue: {
