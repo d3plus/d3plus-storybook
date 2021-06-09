@@ -8,17 +8,17 @@ export default {
   argTypes
 };
 
-const Template = (args) => <Donut config={configify(args)} />;
+const Template = (args) => <Donut config={configify(args, argTypes)} />;
 
 export const GettingStarted = Template.bind({});
 GettingStarted.args = {
   data: [
-    {id: "White Health Center Patients", value: 40},
-    {id: "Black Health Center Patients", value: 20},
-    {id: "Hispanic Health Center Patients", value: 25},
-    {id: "Asian Health Center Patients", value: 10},
-    {id: "American Indian Health Center Patients", value: 5}
+    {Topping: "Powdered sugar", Sold: 40},
+    {Topping: "Cinnamon", Sold: 20},
+    {Topping: "Sprinkles", Sold: 25},
+    {Topping: "Fruits", Sold: 30},
+    {Topping: "Cream", Sold: 15}
   ],
-  groupBy: "id",
-  value: "value"
+  groupBy: "Topping",
+  value: "Sold"
 };

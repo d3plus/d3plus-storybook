@@ -8,7 +8,7 @@ export const argTypes = {
 
     /**
      * Filters out unused argTypes from the Viz primitive and
-     * overrides any defaults that have been changed in Treemap
+     * overrides any defaults that have been changed in Pie
      */
     ...Object.keys(Viz.argTypes)
       .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
@@ -17,17 +17,18 @@ export const argTypes = {
     /**
      * Pie-specific methods
      */
-     innerRadius: {
+    innerRadius: {
       type: {
         summary: "function | number"
       },
+      defaultValue: 0,
       table: {
         defaultValue: {
-          summary: "function | number",
-          detail: "0"
+          summary: 0
         }
       },
-      description: `The function or value to be used as inner radius in the Pie.`
+      control: {type: "number"},
+      description: `The pixel value, or function that returns a pixel value, that is used as the inner radius of the Pie (creating a Donut).`
     },
     padAngle: {
       type: {
@@ -35,35 +36,30 @@ export const argTypes = {
       },
       table: {
         defaultValue: {
-          summary: "number",
-          detail: "0"
+          summary: "undefined",
         }
       },
-      control: {
-        type: "number"
-      },
-      description: `The arc padding to the specified radian value between \`0\` and \`1\`.
+      control: {type: "number"},
+      description: `The padding between each arc, set as a radian value between \`0\` and \`1\`.
       
-By default the value is \`0\`, without setting any padding between each arc.`
+If set, this will override any previously set padPixel value.`
     },
     padPixel: {
       type: {
         summary: "number"
       },
+      defaultValue: 0,
       table: {
         defaultValue: {
-          summary: "number",
-          detail: "0"
+          summary: 0
         }
       },
-      control: {
-        type: "number"
-      },
-      description: `The arc padding to the specified pixel value.
+      control: {type: "number"},
+      description: `The padding between each arc, set as a pixel number value.
       
-By default the value is \`0\`, without setting any padding between each arc.
+By default the value is \`0\`, which shows no padding between each arc.
 
-If \`padAngle\` is defined, \`padPixel\` value will not be considered.`
+If \`padAngle\` is defined, the \`padPixel\` value will not be considered.`
     },
     sort: {
       type: {
@@ -75,7 +71,8 @@ If \`padAngle\` is defined, \`padPixel\` value will not be considered.`
           detail: `(a, b) => b.value - a.value`
         }
       },
-      description: `The comparator function that sort order for the Pie slices.`
+      control: {type: null},
+      description: `A comparator function that sorts the Pie slices.`
     },
     value: {
       type: {

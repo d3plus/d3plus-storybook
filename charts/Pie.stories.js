@@ -8,17 +8,17 @@ export default {
   argTypes
 };
 
-const Template = (args) => <Pie config={configify(args)} />;
+const Template = (args) => <Pie config={configify(args, argTypes)} />;
 
 export const GettingStarted = Template.bind({});
 GettingStarted.args = {
   data: [
-    {id: "White Health Center Patients", value: 40},
-    {id: "Black Health Center Patients", value: 20},
-    {id: "Hispanic Health Center Patients", value: 25},
-    {id: "Asian Health Center Patients", value: 10},
-    {id: "American Indian Health Center Patients", value: 5}
+    {Type: "Apple pie", Percentage: 30},
+    {Type: "Butter pie", Percentage: 20},
+    {Type: "Cherry pie", Percentage: 25},
+    {Type: "Lemon pie", Percentage: 15},
+    {Type: "Sugar pie", Percentage: 10}
   ],
-  groupBy: "id",
-  value: "value"
+  groupBy: "Type",
+  value: "Percentage"
 };
