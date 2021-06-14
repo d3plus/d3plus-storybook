@@ -12,7 +12,7 @@ export const argTypes = {
      * overrides any defaults that have been changed in Plot
      */
     ...Object.keys(Viz.argTypes)
-      .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
+      .filter(k => !k.match(/^(discrete|zoom.*)$/))
       .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
   
     /**
@@ -27,7 +27,7 @@ export const argTypes = {
           summary: "[]"
         }
       },
-      control: {type: "text"},
+      control: {type: "array"},
       description: `Allows drawing custom shapes to be used as annotations in the provided x/y plot. 
 
 This method accepts custom config objects for the [Shape](http://d3plus.org/docs/#Shape) class, either a single config object or an array of config objects. 
@@ -213,6 +213,16 @@ import {constant} from "d3plus-common";
       control: {type: "boolean"},
       description: `Draws circle markers on each vertex of a Line.`
     },
+    shape: {
+      table: {
+        defaultValue: {
+          summary: `Circle`
+        }
+      },
+      control: {
+        type: null
+      }
+    },
     shapeSort: {
       type: {
         summary: "function"
@@ -228,7 +238,7 @@ function shapeSort(a, b) {
           `
         }
       },
-      control: {type: "text"},
+      control: {type: null},
       description: `A comparator function that sorts the shapes based on their type.`
     },
     size: {
