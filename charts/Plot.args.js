@@ -1,23 +1,26 @@
 import React from "react";
 import Viz from "../primitives/Viz";
+import { assign } from "d3plus-common";
 
-import {Plot as D3plusPlot} from "d3plus-react";
+import { Plot as D3plusPlot } from "d3plus-react";
+export const Plot = ({ config }) => <D3plusPlot config={config} />;
 
-export const Plot = ({config}) => <D3plusPlot config={config} />;
-
-export const argTypes = {
-
-    /**
-     * Filters out unused argTypes from the Viz primitive and
-     * overrides any defaults that have been changed in Plot
-     */
-    ...Object.keys(Viz.argTypes)
-      .filter(k => !k.match(/^(discrete|zoom.*)$/))
-      .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
+export const argTypes = assign(
   
-    /**
-     * Plot-specific methods
-     */
+  /**
+   * Filters out unused argTypes from the Viz primitive and
+   * overrides any defaults that have been changed in Plot
+   */
+
+  Object.keys(Viz.argTypes)
+    .filter(k => !k.match(/^(discrete|zoom.*)$/))
+    .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
+
+  /**
+   * Plot-specific methods
+   */
+  
+  {
     annotations: {
       type: {
         summary: "array | object"
@@ -27,7 +30,7 @@ export const argTypes = {
           summary: "[]"
         }
       },
-      control: {type: "array"},
+      control: { type: "array" },
       description: `Allows drawing custom shapes to be used as annotations in the provided x/y plot. 
 
 This method accepts custom config objects for the [Shape](http://d3plus.org/docs/#Shape) class, either a single config object or an array of config objects. 
@@ -53,7 +56,7 @@ Annotations will be drawn underneath the data to be displayed.`
 }`
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A d3plus-shape configuration Object used for styling the background rectangle of the inner x/y plot (behind all of the shapes and gridlines).`
     },
     barPadding: {
@@ -66,7 +69,7 @@ Annotations will be drawn underneath the data to be displayed.`
           summary: 0
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `Sets the pixel space between each bar in a group of bars.`
     },
     baseline: {
@@ -79,7 +82,7 @@ Annotations will be drawn underneath the data to be displayed.`
           summary: "undefined"
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `Sets the baseline for the x/y plot. If it is not specified, returns the current baseline.`
     },
     confidence: {
@@ -92,7 +95,7 @@ Annotations will be drawn underneath the data to be displayed.`
           summary: "undefined"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the confidence to the specified array of lower and upper bounds.
 Can be called with accessor functions or static keys.
 
@@ -119,7 +122,7 @@ Static keys
           summary: "undefined"
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Sets the config method for each shape rendered as a confidence interval`
     },
     discrete: {
@@ -132,7 +135,7 @@ Static keys
           summary: "x"
         }
       },
-      control: {type: "object"},
+      control: { type: "text" },
       description: `Sets the discrete axis to the specified string.`
     },
     discreteCutoff: {
@@ -145,7 +148,7 @@ Static keys
           summary: 100
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `When the width or height of the chart is less than or equal to this pixel value, the discrete axis will not be shown. 
       
 This helps produce slick sparklines. 
@@ -162,7 +165,7 @@ Set this value to \`0\` to disable the behavior entirely.`
           summary: 5
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `Sets the pixel space between groups of bars.`
     },
     lineLabels: {
@@ -175,7 +178,7 @@ Set this value to \`0\` to disable the behavior entirely.`
           summary: false
         }
       },
-      control: {type: "boolean"},
+      control: { type: "boolean" },
       description: `Draws labels on the right side of any Line shapes that are drawn on the plot.`
     },
     lineMarkerConfig: {
@@ -197,7 +200,7 @@ import {constant} from "d3plus-common";
 }`
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Shape config for the Circle shapes drawn by the lineMarkers method.`
     },
     lineMarkers: {
@@ -210,17 +213,15 @@ import {constant} from "d3plus-common";
           summary: false
         }
       },
-      control: {type: "boolean"},
+      control: { type: "boolean" },
       description: `Draws circle markers on each vertex of a Line.`
     },
     shape: {
+      defaultValue: "Circle",
       table: {
         defaultValue: {
-          summary: `Circle`
+          summary: "Circle"
         }
-      },
-      control: {
-        type: null
       }
     },
     shapeSort: {
@@ -238,7 +239,7 @@ function shapeSort(a, b) {
           `
         }
       },
-      control: {type: null},
+      control: { type: null },
       description: `A comparator function that sorts the shapes based on their type.`
     },
     size: {
@@ -251,7 +252,7 @@ function shapeSort(a, b) {
           summary: "undefined"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the size of circles to the given number, data key, or function.`
     },
     sizeMax: {
@@ -264,7 +265,7 @@ function shapeSort(a, b) {
           summary: 20
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `Sets the size scale maximum to the specified number.`
     },
     sizeMin: {
@@ -277,7 +278,7 @@ function shapeSort(a, b) {
           summary: 5
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `Sets the size scale minimum to the specified number.`
     },
     sizeScale: {
@@ -306,7 +307,7 @@ function shapeSort(a, b) {
           summary: false
         }
       },
-      control: {type: "boolean"},
+      control: { type: "boolean" },
       description: `Sets the shape stacking functionality.`
     },
     stackOffset: {
@@ -319,7 +320,7 @@ function shapeSort(a, b) {
           summary: "descending"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the stack offset.`
     },
     stackOrder: {
@@ -332,7 +333,7 @@ function shapeSort(a, b) {
           summary: "none"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the stack order.`
     },
     x: {
@@ -345,7 +346,7 @@ function shapeSort(a, b) {
           summary: "x"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the x accessor to the specified function or number.`
     },
     x2: {
@@ -358,7 +359,7 @@ function shapeSort(a, b) {
           summary: "x2"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the x2 accessor to the specified function or number.`
     },
     xConfig: {
@@ -381,7 +382,7 @@ function shapeSort(a, b) {
 }`
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the x-axis.`
     },
     xCutoff: {
@@ -394,7 +395,7 @@ function shapeSort(a, b) {
           summary: "undefined"
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `When the width of the chart is less than or equal to this pixel value, and the x-axis is not the discrete axis, it will not be shown.`
     },
     x2Config: {
@@ -409,7 +410,7 @@ function shapeSort(a, b) {
 }`
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the x2-axis.`
     },
     xDomain: {
@@ -421,7 +422,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Sets the x domain to the specified array.`
     },
     x2Domain: {
@@ -433,7 +434,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Sets the x2 domain to the specified array.`
     },
     xSort: {
@@ -445,7 +446,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A comparator function that custom sorts discrete x axis.`
     },
     x2Sort: {
@@ -457,7 +458,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A comparator function that custom sorts discrete x2 axis.`
     },
     y: {
@@ -470,7 +471,7 @@ function shapeSort(a, b) {
           summary: "y"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the y accessor to the specified function or number.`
     },
     y2: {
@@ -483,7 +484,7 @@ function shapeSort(a, b) {
           summary: "y2"
         }
       },
-      control: {type: "text"},
+      control: { type: "text" },
       description: `Sets the y2 accessor to the specified function or number.`
     },
     yConfig: {
@@ -506,7 +507,7 @@ function shapeSort(a, b) {
 }`
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the y-axis.`
     },
     yCutoff: {
@@ -519,7 +520,7 @@ function shapeSort(a, b) {
           summary: 150
         }
       },
-      control: {type: "number"},
+      control: { type: "number" },
       description: `When the width of the chart is less than or equal to this pixel value, and the y-axis is not the discrete axis, it will not be shown.`
     },
     y2Config: {
@@ -531,7 +532,7 @@ function shapeSort(a, b) {
           summary: "{}",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the y2-axis.`
     },
     yDomain: {
@@ -543,7 +544,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Sets the y domain to the specified array.`
     },
     y2Domain: {
@@ -555,7 +556,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `Sets the y2 domain to the specified array.`
     },
     ySort: {
@@ -567,7 +568,7 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A comparator function that custom sorts discrete y axis.`
     },
     y2Sort: {
@@ -579,7 +580,8 @@ function shapeSort(a, b) {
           summary: "undefined",
         }
       },
-      control: {type: "object"},
+      control: { type: "object" },
       description: `A comparator function that custom sorts discrete y2 axis.`
     }
   }
+);

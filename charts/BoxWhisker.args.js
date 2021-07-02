@@ -2,30 +2,22 @@ import React from "react";
 import { argTypes as plotArgTypes } from "./Plot.args";
 import { assign } from "d3plus-common";
 
-import { AreaPlot as D3plusArea } from "d3plus-react";
-export const Area = ({ config }) => <D3plusArea config={config} />;
+import { BoxWhisker as D3plusBoxWhisker } from "d3plus-react";
+export const BoxWhisker = ({ config }) => <D3plusBoxWhisker config={config} />;
 
 export const argTypes = assign(
 
   /**
    * Filters out unused argTypes from the Plot args and
-   * overrides any defaults that have been changed in AreaPlot
+   * overrides any defaults that have been changed in BoxWhisker
    */
   Object.keys(plotArgTypes)
     .reduce((obj, k) => (obj[k] = plotArgTypes[k], obj), {}),
 
   /**
-   * Area-specific methods
+   * BoxWhisker-specific methods
    */
   {
-    baseline: {
-      defaultValue: 0,
-      table: {
-        defaultValue: {
-          summary: 0
-        }
-      }
-    },
     discrete: {
       defaultValue: "x",
       table: {
@@ -37,7 +29,7 @@ export const argTypes = assign(
     shape: {
       table: {
         defaultValue: {
-          summary: "Area"
+          summary: "Box"
         }
       }
     },

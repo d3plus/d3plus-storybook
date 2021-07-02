@@ -2,30 +2,22 @@ import React from "react";
 import { argTypes as plotArgTypes } from "./Plot.args";
 import { assign } from "d3plus-common";
 
-import { AreaPlot as D3plusArea } from "d3plus-react";
-export const Area = ({ config }) => <D3plusArea config={config} />;
+import { LinePlot as D3plusLinePlot } from "d3plus-react";
+export const LinePlot = ({ config }) => <D3plusLinePlot config={config} />;
 
 export const argTypes = assign(
 
   /**
    * Filters out unused argTypes from the Plot args and
-   * overrides any defaults that have been changed in AreaPlot
+   * overrides any defaults that have been changed in LinePlot
    */
   Object.keys(plotArgTypes)
     .reduce((obj, k) => (obj[k] = plotArgTypes[k], obj), {}),
 
   /**
-   * Area-specific methods
+   * LinePlot-specific methods
    */
   {
-    baseline: {
-      defaultValue: 0,
-      table: {
-        defaultValue: {
-          summary: 0
-        }
-      }
-    },
     discrete: {
       defaultValue: "x",
       table: {
@@ -35,17 +27,10 @@ export const argTypes = assign(
       }
     },
     shape: {
+      defaultValue: "Line",
       table: {
         defaultValue: {
-          summary: "Area"
-        }
-      }
-    },
-    x: {
-      defaultValue: "x",
-      table: {
-        defaultValue: {
-          summary: "x"
+          summary: "Line"
         }
       }
     }
