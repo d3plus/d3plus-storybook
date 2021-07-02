@@ -25,8 +25,65 @@ GettingStarted.args = {
   groupBy: "id"
 };
 
-export const HorizontalBarchart = Template.bind({});
-HorizontalBarchart.args = {
+export const BarChartSorting = Template.bind({});
+BarChartSorting.args = {
+  data: [
+    {"Travel Time": "< 5 Minutes",     "ID Travel Time": "0", "Population Percentage":  2},
+    {"Travel Time": "15 - 24 Minutes", "ID Travel Time": "2", "Population Percentage": 30},
+    {"Travel Time": "35 - 44 Minutes", "ID Travel Time": "4", "Population Percentage":  7},
+    {"Travel Time": "45 - 89 Minutes", "ID Travel Time": "5", "Population Percentage": 11},
+    {"Travel Time": "5 - 14 Minutes",  "ID Travel Time": "1", "Population Percentage": 20},
+    {"Travel Time": "90+ Minutes",     "ID Travel Time": "6", "Population Percentage":  5},
+    {"Travel Time": "25 - 34 Minutes", "ID Travel Time": "3", "Population Percentage": 25}
+  ],
+  groupBy: "Travel Time",
+  x: "Travel Time",
+  y: "Population Percentage",
+  xSort: function(a, b) {
+    return a["ID Travel Time"] - b["ID Travel Time"];
+  }
+};
+
+export const CustomBarChartPadding = Template.bind({});
+CustomBarChartPadding.args = {
+  data: "https://datamexico.org/api/data?Indicator=62,63,64&Sector=31-33&cube=indicators_economic_census&drilldowns=Indicator,Category&measures=Value,Percentage&parents=false&locale=en",
+  groupBy: "Indicator",
+  barPadding: 0,
+  groupPadding: 40,
+  label: function(d) {
+    return `${formatAbbreviate(d["Percentage"])}%`;
+  },
+  legend: false,
+  x: "Category",
+  y: "Percentage",
+  yConfig: {
+    tickFormat: function(d) {
+      return `${d}%`;
+    },
+    title: false
+  }
+}
+
+export const GroupedBarChart = Template.bind({});
+GroupedBarChart.args = {
+  data: "https://datamexico.org/api/data?Indicator=62,63,64&Sector=31-33&cube=indicators_economic_census&drilldowns=Indicator,Category&measures=Value,Percentage&parents=false&locale=en",
+  groupBy: "Indicator",
+  label: function(d) {
+    return `${formatAbbreviate(d["Percentage"])}%`;
+  },
+  legend: false,
+  x: "Category",
+  y: "Percentage",
+  yConfig: {
+    tickFormat: function(d) {
+      return `${d}%`;
+    },
+    title: false
+  }
+}
+
+export const HorizontalBarChart = Template.bind({});
+HorizontalBarChart.args = {
   data: [
     {id: "alpha", x: 4, y:  7},
     {id: "alpha", x: 5, y: 25},
@@ -43,6 +100,23 @@ HorizontalBarchart.args = {
     title: ""
   },
   y: "x"
+};
+
+export const PercentStackedBarChart = Template.bind({});
+PercentStackedBarChart.args = {
+  data: "https://datamexico.org/api/data?Indicator=107&Nation=mex&cube=indicators_economic_census&drilldowns=Category,Indicator,Sector&measures=Percentage&parents=false&locale=en",
+  groupBy: ["Category"],
+  discrete: "y",
+  height: 600,
+  legendPosition: "bottom",
+  stacked: true,
+  x: "Percentage",
+  xConfig: {
+    tickFormat: function(d) {
+      return `${d}%`;
+    }
+  },
+  y: "Sector"
 };
 
 export const PopulationPyramid = Template.bind({});
@@ -307,4 +381,18 @@ PopulationPyramid.args = {
     }
   },
   y: "Age range"
+};
+
+export const StackedBarChart = Template.bind({});
+StackedBarChart.args = {
+  data: [
+    {id: "alpha", x: 4, y:  7},
+    {id: "alpha", x: 5, y: 25},
+    {id: "alpha", x: 6, y: 13},
+    {id: "beta",  x: 4, y: 17},
+    {id: "beta",  x: 5, y:  8},
+    {id: "beta",  x: 6, y: 13}
+  ],
+  groupBy: "id",
+  stacked: true
 };
