@@ -107,7 +107,6 @@ PercentStackedBarChart.args = {
   data: "https://datamexico.org/api/data?Indicator=107&Nation=mex&cube=indicators_economic_census&drilldowns=Category,Indicator,Sector&measures=Percentage&parents=false&locale=en",
   groupBy: ["Category"],
   discrete: "y",
-  height: 600,
   legendPosition: "bottom",
   stacked: true,
   x: "Percentage",
@@ -362,7 +361,6 @@ PopulationPyramid.args = {
     }
   ],
   groupBy: ["Sex"],
-  height: 400,
   discrete: "y",
   shapeConfig: {
     label: function(d) {return ""}
