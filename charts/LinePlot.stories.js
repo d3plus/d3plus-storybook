@@ -74,6 +74,87 @@ AddingLastValueLabelToLinePlot.args = {
   y: "y"
 };
 
+export const AddingSecondaryYAxis = Template.bind({});
+AddingSecondaryYAxis.args = {
+  data: [
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2011,
+      "Trade Value": 1403273708182,
+      "Trade Value Growth": 0.17509765715100706
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2012,
+      "Trade Value": 1453520657725,
+      "Trade Value Growth": 0.03580694860170724
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2013,
+      "Trade Value": 1478035757057,
+      "Trade Value Growth": 0.016866013703836988
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2014,
+      "Trade Value": 1521969928619,
+      "Trade Value Growth": 0.029724701416885744
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2015,
+      "Trade Value": 1409516953687,
+      "Trade Value Growth": -0.07388646307488954
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2016,
+      "Trade Value": 1353648792022,
+      "Trade Value Growth": -0.0396363885647921
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2017,
+      "Trade Value": 1456201053251,
+      "Trade Value Growth": 0.07575987348669187
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2018,
+      "Trade Value": 1548849519602,
+      "Trade Value Growth": 0.06362340292513889
+    },
+    {
+      "Country ID": "nausa",
+      "Country": "United States",
+      "Year": 2019,
+      "Trade Value": 1511931053052,
+      "Trade Value Growth": -0.023836057720756986
+    }
+  ],
+  groupBy: ["Country"],
+  shape: "Line",
+  x: "Year",
+  xConfig: {
+    labels: [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+    tickFormat: function (d) { return `${d * 1}` }
+  },
+  y: "Trade Value",
+  y2: "Trade Value Growth",
+  y2Config: {
+    tickFormat: function (d) { return `${parseInt(d * 100)}%` }
+  }
+};
+
 export const AddingVertexMarkersToLinePlot = Template.bind({});
 AddingVertexMarkersToLinePlot.args = {
   data: [

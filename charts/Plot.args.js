@@ -57,7 +57,7 @@ Annotations will be drawn underneath the data to be displayed.`
         }
       },
       control: { type: "object" },
-      description: `A d3plus-shape configuration Object used for styling the background rectangle of the inner x/y plot (behind all of the shapes and gridlines).`
+      description: `A d3plus-shape config Object that is used for styling the background rectangle of the inner x/y plot.`
     },
     barPadding: {
       type: {
@@ -83,7 +83,7 @@ Annotations will be drawn underneath the data to be displayed.`
         }
       },
       control: { type: "number" },
-      description: `Sets the baseline for the x/y plot. If it is not specified, returns the current baseline.`
+      description: `Sets the baseline for the x/y plot.`
     },
     confidence: {
       type: {
@@ -293,7 +293,7 @@ function shapeSort(a, b) {
       },
       control: {
         type: "select",
-        options: ["identity", "linear", "log", "radial", "sqrt", "time"] // not sure about all of these options
+        options: ["identity", "linear", "log", "radial", "sqrt", "time"]
       },
       description: `Sets the size scale to the specified string.`
     },

@@ -3,7 +3,7 @@ import {argTypes, Plot} from './Plot.args';
 import configify from "../helpers/configify";
 
 export default {
-  title: "Charts/Plot",
+  title: "Charts/ScatterPlot",
   component: Plot,
   argTypes
 };
@@ -123,8 +123,8 @@ ChangingShapes.args = {
   y: "weight"
 };
 
-export const ScatterPlot = Template.bind({});
-ScatterPlot.args = {
+export const BubbleChart = Template.bind({});
+BubbleChart.args = {
   data: [
     {id: "alpha", x: 4, y: 7, value: 240},
     {id: "beta", x: 5, y: 2, value: 120},
