@@ -36,7 +36,6 @@ export const argTypes = assign(
     },
     legend: {
       table: {
-        category: "Legends",
         defaultValue: {
           summary: "function",
           detail: `function(config, arr) {
