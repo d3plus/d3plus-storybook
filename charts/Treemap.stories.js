@@ -36,9 +36,8 @@ NestedData.args = {
   sum: "value"
 };
 
-import {treemapDice} from "d3-hierarchy";
-export const TilingMethods = Template.bind({});
-TilingMethods.args = {
+export const DifferentTilingMethods = Template.bind({});
+DifferentTilingMethods.args = {
   data: [
     {"Group": "Store", "Sub-Group": "Convenience Store", "Number of Stores": 100},
     {"Group": "Store", "Sub-Group": "Grocery Store", "Number of Food Stores": 150},
@@ -50,4 +49,14 @@ TilingMethods.args = {
   groupBy: ["Group", "Sub-Group"],
   sum: "Number of Food Stores",
   tile: "slice"
+};
+
+export const SmallDataThreshold = Template.bind({});
+SmallDataThreshold.args = {
+  colorScale: "Population",
+  data: "https://datausa.io/api/data?measures=Population&drilldowns=State&Year=2018",
+  groupBy: "State",
+  sum: "Population",
+  threshold: 0.0025,
+  thresholdName: "States"
 };
