@@ -1,16 +1,17 @@
 import React from "react";
 import Viz from "../primitives/Viz";
+import { assign } from "d3plus-common";
 
-import {Treemap as D3plusTreemap} from "d3plus-react";
-export const Treemap = ({config}) => <D3plusTreemap config={config} />;
+import { Treemap as D3plusTreemap } from "d3plus-react";
+export const Treemap = ({ config }) => <D3plusTreemap config={config} />;
 
-export const argTypes = {
+export const argTypes = assign(
 
   /**
    * Filters out unused argTypes from the Viz primitive and
    * overrides any defaults that have been changed in Treemap
    */
-  ...Object.keys(Viz.argTypes)
+  Object.keys(Viz.argTypes)
     .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
     .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
 
@@ -48,6 +49,6 @@ Can either be a string referring to a d3-hierarchy [tiling method](https://githu
     control: {
       type: "select",
       options: ["binary", "dice", "slice", "sliceDice", "squarify", "resquarify"]
-    },
+    }
   }
-}
+);
