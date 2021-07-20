@@ -22,10 +22,10 @@
   "homepage": "https://github.com/d3plus/d3plus-storybook#readme",
   "devDependencies": {
     "@babel/core": "^7.14.0",
-    "@storybook/addon-actions": "^6.3.4",
-    "@storybook/addon-essentials": "^6.3.4",
-    "@storybook/addon-links": "^6.3.4",
-    "@storybook/react": "^6.3.4",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
     "babel-loader": "^8.2.2",
     "chromatic": "^5.8.0"
   },

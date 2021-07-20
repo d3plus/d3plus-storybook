@@ -1,9 +1,7 @@
 // Sets min-height for docs iframes
 .innerZoomElementWrapper {
   & > * {
-    height: 60vh;
-    max-height: 500px;
-    min-height: 200px;
+    min-height: 300px;
   }
 }
 
