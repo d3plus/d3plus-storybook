@@ -5,5 +5,8 @@ export const parameters = {
   controls: {
     expanded: false,
     sort: "requiredFirst"
+  },
+  jsx: {
+    showFunctions: true
   }
 }
