@@ -1,6 +1,7 @@
 import React from 'react';
 import {argTypes, StackedArea} from './StackedArea.args';
 import configify from "../helpers/configify";
+import funcify from "../helpers/funcify";
 
 import { formatAbbreviate } from 'd3plus-format';
 
@@ -55,8 +56,8 @@ StackedAreaAsSharePercentages.args = {
   groupBy: "id",
   stackOffset: "expand",
   yConfig: {
-    tickFormat: function(d) {
+    tickFormat: funcify(function(d) {
       return `${formatAbbreviate(d * 100)}%`;
-    }
+    }, "function(d) {return `${formatAbbreviate(d * 100)}%`;}")
   }
 };

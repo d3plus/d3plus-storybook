@@ -1,6 +1,7 @@
 import React from 'react';
 import {argTypes, Plot} from './Plot.args';
 import configify from "../helpers/configify";
+import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/ScatterPlot",
@@ -31,8 +32,9 @@ AddingBackgroundImagesToShapes.args = {
   groupBy: "Country",
   shapeConfig: {
     Circle: {
-      backgroundImage: function(d) {return `https://oec.world/images/icons/country/country_${d["Country ID"].slice(2,5)}_circle.png`},
-      label: function () {return ""}
+      backgroundImage: funcify(function(d) {return `https://oec.world/images/icons/country/country_${d["Country ID"].slice(2,5)}_circle.png`},
+      "function(d) {return `https://oec.world/images/icons/country/country_${d['Country ID'].slice(2,5)}_circle.png`}"),
+      label: funcify(function () {return ""}, "function () {return ''}")
     }
   },
   size: "Trade Value",
@@ -81,16 +83,16 @@ AddingTrendLineUsingAnnotations.args = {
         }
       ],
       shape: "Line",
-      stroke: function(d) {
+      stroke: funcify(function(d) {
         return d["id"] === "Trend" ? "#6A994E" : "#c3c3c3"
-      },
+      }, "function(d) {return d['id'] === 'Trend' ? '#6A994E' : '#c3c3c3'}"),
       strokeDasharray: "10",
       strokeWidth: 2
     }
   ],
-  label: function(d) {
+  label: funcify(function(d) {
     return d["State"]
-  },
+  }, "function(d) {return d['State']}"),
   legend: false,
   x: "Trade Value",
   xConfig: {
@@ -114,10 +116,10 @@ ChangingShapes.args = {
     {"value": 1,   "weight": 0,    "name": "zeta"}
   ],
   groupBy: "name",
-  shape: function(d) {
+  shape: funcify(function(d) {
     if (d.name === "alpha" || d.name === "delta" || d.name === "epsilon") return "Rect";
     return "Circle";
-  },
+  }, "function(d) {if (d.name === 'alpha' || d.name === 'delta' || d.name === 'epsilon') return 'Rect'; return 'Circle';}"),
   size: "value",
   x: "value",
   y: "weight"
@@ -147,19 +149,19 @@ SortingShapes.args = {
     {id: "delta", time: 6, value: 180}
   ],
   groupBy: "id",
-  shape: function(d) {
+  shape: funcify(function(d) {
     if (d.id === "delta") return "Line";
     return "Circle";
-  },
+  }, "function(d) {if (d.id === 'delta') return 'Line'; return 'Circle';}"),
   shapeConfig: {
     Line: {
       strokeLinecap: "round",
       strokeWidth: 5
     }
   },
-  shapeSort: function(a, b) {
+  shapeSort: funcify(function(a, b) {
     return ["Circle", "Line"].indexOf(b) - ["Circle", "Line"].indexOf(a)
-  },
+  }, "function(a, b) {return ['Circle', 'Line'].indexOf(b) - ['Circle', 'Line'].indexOf(a)}"),
   sizeMin: 20,
   x: "time",
   y: "value"

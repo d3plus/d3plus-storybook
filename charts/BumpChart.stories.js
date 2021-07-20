@@ -1,8 +1,7 @@
 import React from 'react';
 import {argTypes, BumpChart} from './BumpChart.args';
 import configify from "../helpers/configify";
-
-import {formatAbbreviate} from 'd3plus-format';
+import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/BumpChart",
@@ -30,9 +29,9 @@ GettingStarted.args = {
   ],
   groupBy: "fruit",
   discrete: "x",
-  label: function(d) {
+  label: funcify(function(d) {
     return d["label"]
-  },
+  }, "function(d) {return d['label']}"),
   x: "year",
   y: "rank",
   y2: "rank"

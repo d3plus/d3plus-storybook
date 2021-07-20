@@ -1,6 +1,7 @@
 import React from 'react';
 import {argTypes, BarChart} from './BarChart.args';
 import configify from "../helpers/configify";
+import funcify from "../helpers/funcify";
 
 import {formatAbbreviate} from 'd3plus-format';
 
@@ -39,9 +40,11 @@ BarChartSorting.args = {
   groupBy: "Travel Time",
   x: "Travel Time",
   y: "Population Percentage",
-  xSort: function(a, b) {
+  xSort: funcify(function(a, b) {
     return a["ID Travel Time"] - b["ID Travel Time"];
-  }
+  }, `function(a, b) {
+    return a["ID Travel Time"] - b["ID Travel Time"];
+  }`)
 };
 
 export const CustomBarChartPadding = Template.bind({});
@@ -50,16 +53,16 @@ CustomBarChartPadding.args = {
   groupBy: "Indicator",
   barPadding: 0,
   groupPadding: 40,
-  label: function(d) {
-    return `${formatAbbreviate(d["Percentage"])}%`;
-  },
+  label: funcify(function(d) {
+    return `${formatAbbreviate(d["Percentage"])}%`
+  }, "function(d) {return `${formatAbbreviate(d['Percentage'])}%`}"),
   legend: false,
   x: "Category",
   y: "Percentage",
   yConfig: {
-    tickFormat: function(d) {
+    tickFormat: funcify(function(d) {
       return `${d}%`;
-    },
+    }, "function(d) {return `${d}%`}"),
     title: false
   }
 }
@@ -68,16 +71,16 @@ export const GroupedBarChart = Template.bind({});
 GroupedBarChart.args = {
   data: "https://datamexico.org/api/data?Indicator=62,63,64&Sector=31-33&cube=indicators_economic_census&drilldowns=Indicator,Category&measures=Value,Percentage&parents=false&locale=en",
   groupBy: "Indicator",
-  label: function(d) {
+  label: funcify(function(d) {
     return `${formatAbbreviate(d["Percentage"])}%`;
-  },
+  }, "function(d) {return `${formatAbbreviate(d['Percentage'])}%`}"),
   legend: false,
   x: "Category",
   y: "Percentage",
   yConfig: {
-    tickFormat: function(d) {
+    tickFormat: funcify(function(d) {
       return `${d}%`;
-    },
+    }, "function(d) {return `${d}%`}"),
     title: false
   }
 }
@@ -111,9 +114,9 @@ PercentStackedBarChart.args = {
   stacked: true,
   x: "Percentage",
   xConfig: {
-    tickFormat: function(d) {
+    tickFormat: funcify(function(d) {
       return `${d}%`;
-    }
+    }, "function(d) {return `${d}%`;}")
   },
   y: "Sector"
 };
@@ -363,20 +366,20 @@ PopulationPyramid.args = {
   groupBy: ["Sex"],
   discrete: "y",
   shapeConfig: {
-    label: function(d) {return ""}
+    label: funcify(function(d) {return ""}, "function(d) {return ''}")
   },
   stacked: true,
   tooltipConfig: {
     tbody: [
       ["Age range:", function(d) {return d["Age range"]}],
-      ["Population:", function(d) {return formatAbbreviate(Math.abs(d["Population"]))}]
+      ["Population:", funcify(function(d) {return formatAbbreviate(Math.abs(d["Population"]))}, "function(d) {return formatAbbreviate(Math.abs(d['Population']))}")]
     ]
   },
   x: "Population",
   xConfig: {
-    tickFormat: function(d) {
+    tickFormat: funcify(function(d) {
       return formatAbbreviate(Math.abs(d))
-    }
+    }, "function(d) {return formatAbbreviate(Math.abs(d))}")
   },
   y: "Age range"
 };

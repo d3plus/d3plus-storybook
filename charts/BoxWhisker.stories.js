@@ -1,6 +1,7 @@
 import React from 'react';
 import {argTypes, BoxWhisker} from './BoxWhisker.args';
 import configify from "../helpers/configify";
+import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/BoxWhisker",
@@ -96,9 +97,9 @@ ChangingBoxAndWhiskerEndpointShapes.args = {
   legend: false,
   shapeConfig: {
     whiskerConfig: {
-      endpoint: function(d) {
+      endpoint: funcify(function(d) {
         return d.id === "alpha" ? "Rect" : "Circle"
-      }
+      }, "function(d) {return d.id === 'alpha' ? 'Rect' : 'Circle'}")
     }
   },
   x: "id",
@@ -138,9 +139,9 @@ ChangingBoxAndWhiskerOutlierStyles.args = {
   groupBy: ["id", "value"],
   legend: false,
   shapeConfig: {
-    outlier: function(d) {
+    outlier: funcify(function(d) {
       return d.id === "alpha" ? "Circle" : "Rect";
-    },
+    }, "function(d) {return d.id === 'alpha' ? 'Circle' : 'Rect'}"),
     outlierConfig: {
       Rect: {
         fill: "green"

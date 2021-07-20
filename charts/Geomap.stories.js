@@ -1,6 +1,7 @@
 import React from 'react';
 import { argTypes, Geomap } from './Geomap.args';
 import configify from "../helpers/configify";
+import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/Geomap",
@@ -45,7 +46,7 @@ OverridingDefaultColorscaleBehavior.args = {
   },
   projection: "geoMiller",
   topojson: "https://oec.world/topojson/world-50m.json",
-  topojsonFilter: function(d) {return d.id !== "ata"}
+  topojsonFilter: funcify(function(d) {return d.id !== "ata"}, "function(d) {return d.id !== 'ata'}")
 }
 
 
@@ -56,7 +57,7 @@ RemovingBackgroundOceanAndTilesFromAGeomap.args = {
   colorScale: "Diabetes Prevalence",
   colorScaleConfig: {
     axisConfig: {
-      tickFormat: function(d) { return `${(d * 100).toFixed(1)}%` }
+      tickFormat: funcify(function(d) { return `${(d * 100).toFixed(1)}%` }, "function(d) {return `${(d * 100).toFixed(1)}%`}")
     }
   },
   ocean: "transparent",
@@ -72,7 +73,7 @@ SimpleChoroplethMap.args = {
   colorScale: "Diabetes Prevalence",
   colorScaleConfig: {
     axisConfig: {
-      tickFormat: function(d) { return `${(d * 100).toFixed(1)}%` }
+      tickFormat: funcify(function(d) { return `${(d * 100).toFixed(1)}%` }, "function(d) {return `${(d * 100).toFixed(1)}%`}")
     }
   },
   projection: "geoAlbersUsa",
