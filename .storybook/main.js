@@ -15,6 +15,8 @@ module.exports = {
         backgrounds: false,
         controls: true,
         docs: true,
+        measure: false,
+        outline: false,
         toolbars: false,
         viewport: false
       }
