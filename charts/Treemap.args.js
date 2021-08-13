@@ -18,7 +18,7 @@ export const argTypes = assign(
   /**
    * Treemap-specific methods
    */
-    {
+  {
     sum: {
       type: {
         summary: "string | function",
