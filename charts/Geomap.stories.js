@@ -16,15 +16,110 @@ GettingStarted.args = {
   data: []
 };
 
+export const ChangingCoordinatePointSizes = Template.bind({});
+ChangingCoordinatePointSizes.args = {
+  data: "https://d3plus.org/data/city_coords.json",
+    groupBy: "slug",
+    colorScale: "dma_code",
+    label: funcify(function(d) {
+        return d.city + ", " + d.region;
+      }, `function(d) {return d.city + ", " + d.region}`),
+    point: funcify(function(d) {
+      return [d.longitude, d.latitude];
+    }, "function(d) {return [d.longitude, d.latitude]}"),
+    pointSize: funcify(function(d) {
+      return d.dma_code;
+    }, "function(d) {return d.dma_code}"),
+    pointSizeMin: 1,
+    pointSizeMax: 10
+}
+
 export const ChangingMapProjections = Template.bind({});
 ChangingMapProjections.args = {
-  data: "https://datausa.io/api/data?Geography=01000US:children&measure=Household%20Income%20by%20Race,Household%20Income%20by%20Race%20Moe&drilldowns=State",
-  groupBy: "ID State",
-  colorScale: "Household Income by Race",
+  data: [],
+  projection: "geoMercator",
+  topojson: "https://oec.world/topojson/world-50m.json",
+  topojsonFilter: funcify(function(d) {return d.id !== "ata"}, "function(d) {return d.id !== 'ata'}")
+};
+
+export const ChangingGeomapTiles = Template.bind({});
+ChangingGeomapTiles.args = {
+  tileUrl: "https://tile.opentopomap.org/{z}/{x}/{y}.png"
+}
+
+export const ChangingTheFallbackTopojsonFill = Template.bind({});
+ChangingTheFallbackTopojsonFill.args = {
+  data: "https://datausa.io/api/data?PUMS%20Industry=481&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count&Record%20Count>=5",
+  groupBy: "ID PUMA",
+  colorScale: "Total Population",
   projection: "geoAlbersUsa",
-  time: "Year",
+  topojson: "https://datausa.io/topojson/Puma.json",
+  topojsonFill: "#ffcccc"
+}
+
+export const ChoropletWithCustomColors = Template.bind({});
+ChoropletWithCustomColors.args = {
+  data: "https://datausa.io/api/data?measure=Diabetes%20Prevalence&drilldowns=State&Year=2021",
+  groupBy: "ID State",
+  colorScale: "Diabetes Prevalence",
+  colorScaleConfig: {
+    color: ["red", "orange", "yellow", "green", "blue"]
+  },
+  projection: "geoAlbersUsa",
   topojson: "https://datausa.io/topojson/State.json"
 };
+
+export const ChoropletWithJenksBreaks = Template.bind({});
+ChoropletWithJenksBreaks.args = {
+  data: "https://datausa.io/api/data?PUMS%20Occupation=399011&drilldowns=PUMA&measure=ygopop%20RCA,Record%20Count&Record%20Count%3E=5&Year=2019",
+  groupBy: "ID PUMA",
+  colorScale: "ygopop RCA",
+  colorScaleConfig: {
+    scale: "jenks"
+  },
+  topojson: "https://datausa.io/topojson/Puma.json",
+  projection: "geoAlbersUsa",
+};
+
+export const CoordinatePointsOnAMap = Template.bind({});
+CoordinatePointsOnAMap.args = {
+  data: "https://d3plus.org/data/city_coords.json",
+  groupBy: "slug",
+  colorScale: "dma_code",
+  colorScaleConfig: {
+    color: ["red", "orange", "yellow", "green", "blue"]
+  },
+  point: funcify(function(d) {return [d.longitude, d.latitude]}, "function(d) {return [d.longitude, d.latitude]}")
+}
+
+export const CustomCoordinatePointZoom = Template.bind({});
+CustomCoordinatePointZoom.args = {
+  fitObject: {
+    "type": "Topology",
+    "objects": {
+      "custom-bounds": {
+        "type": "GeometryCollection",
+        "geometries":[
+          {
+            "type": "MultiPoint",
+            "coordinates": [[-160, 70], [170, -55]]
+          }
+        ]
+      }
+    }
+  }
+}
+
+export const DisableGeomapZooming = Template.bind({});
+DisableGeomapZooming.args = {
+  data: "https://datausa.io/api/data?measure=Diabetes%20Prevalence&drilldowns=State&Year=2021",
+  groupBy: "ID State",
+  colorScale: "Diabetes Prevalence",
+  ocean: "transparent",
+  projection: "geoAlbersUsa",
+  topojson: "https://datausa.io/topojson/State.json",
+  zoom: false
+}
 
 export const HiddingTheColorScale = Template.bind({});
 HiddingTheColorScale.args = {
@@ -47,8 +142,7 @@ OverridingDefaultColorscaleBehavior.args = {
   projection: "geoMiller",
   topojson: "https://oec.world/topojson/world-50m.json",
   topojsonFilter: funcify(function(d) {return d.id !== "ata"}, "function(d) {return d.id !== 'ata'}")
-}
-
+};
 
 export const RemovingBackgroundOceanAndTilesFromAGeomap = Template.bind({});
 RemovingBackgroundOceanAndTilesFromAGeomap.args = {

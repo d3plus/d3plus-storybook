@@ -12,7 +12,7 @@ export const argTypes = assign(
    * overrides any defaults that have been changed in Geomap
    */
   Object.keys(Viz.argTypes)
-    .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
+    .filter(k => !k.match(/^(discrete|shape.*)$/))
     .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
 
   /**
@@ -85,12 +85,12 @@ Additionally, a custom formatting function can be passed as a second argument to
           summary: function(d) { return d.point }
         }
       },
-      control: { type: "array" },
+      control: { type: null },
       description: `Sets the accessor to be used when detecting coordinate points in the objects passed to the data. Values are expected to be in the format \`[longitude, latitude]\`.`
     },
     pointSize: {
       type: {
-        summary: "function | number"
+        summary: "number | function"
       },
       defaultValue: 1,
       table: {
@@ -129,7 +129,7 @@ Additionally, a custom formatting function can be passed as a second argument to
     },
     projection: {
       type: {
-        summary: "function | string"
+        summary: "string | function"
       },
       defaultValue: "geoMercator",
       table: {
@@ -137,7 +137,129 @@ Additionally, a custom formatting function can be passed as a second argument to
           summary: "geoMercator"
         }
       },
-      control: { type: "text" },
+      control: { 
+        type: "select",
+        options: [
+          "geoAzimuthalEqualArea", 
+          "geoAzimuthalEquidistant", 
+          "geoGnomonic", 
+          "geoOrthographic",
+          "geoStereographic",
+          "geoEqualEarth",
+          "geoAlbersUsa",
+          "geoAlbers",
+          "geoConicConformal",
+          "geoConicEqualArea",
+          "geoConicEquidistant",
+          "geoEquirectangular",
+          "geoMercator",
+          "geoTransverseMercator",
+          "geoNaturalEarth1",
+          "geoAiry",
+          "geoAitoff",
+          // "geoArmadillo",
+          "geoAugust",
+          "geoBaker",
+          // "geoBerghaus",
+          "geoBertin1953",
+          "geoBoggs",
+          "geoBonne",
+          "geoBottomley",
+          "geoBromley",
+          // "geoChamberlin",
+          "geoChamberlinAfrica",
+          "geoCollignon",
+          "geoCraig",
+          "geoCraster",
+          "geoCylindricalEqualArea",
+          "geoCylindricalStereographic",
+          "geoEckert1",
+          "geoEckert2",
+          "geoEckert3",
+          "geoEckert4",
+          "geoEckert5",
+          "geoEckert6",
+          "geoEisenlohr",
+          "geoFahey",
+          "geoFoucaut",
+          "geoFoucautSinusoidal",
+          "geoGilbert",
+          // "geoGingery",
+          "geoGinzburg4",
+          "geoGinzburg5",
+          "geoGinzburg6",
+          "geoGinzburg8",
+          "geoGinzburg9",
+          "geoGringorten",
+          "geoGuyou",
+          "geoHammer",
+          // "geoHammerRetroazimuthal",
+          // "geoHealpix",
+          "geoHill",
+          "geoHomolosine",
+          "geoHufnagel",
+          "geoHyperelliptical",
+          "geoKavrayskiy7",
+          "geoLagrange",
+          "geoLarrivee",
+          "geoLaskowski",
+          "geoLittrow",
+          "geoLoximuthal",
+          "geoMiller",
+          // "geoModifiedStereographic",
+          "geoModifiedStereographicAlaska",
+          "geoModifiedStereographicGs48",
+          "geoModifiedStereographicGs50",
+          "geoModifiedStereographicMiller",
+          "geoModifiedStereographicLee",
+          "geoMollweide",
+          "geoMtFlatPolarParabolic",
+          "geoMtFlatPolarQuartic",
+          "geoMtFlatPolarSinusoidal",
+          "geoNaturalEarth2",
+          "geoNellHammer",
+          "geoNicolosi",
+          "geoPatterson",
+          "geoPolyconic",
+          "geoRectangularPolyconic",
+          "geoRobinson",
+          "geoSatellite",
+          "geoSinusoidal",
+          "geoSinuMollweide",
+          "geoTimes",
+          // "geoTwoPointAzimuthal",
+          "geoTwoPointEquidistantUsa",
+          "geoVanDerGrinten",
+          "geoVanDerGrinten2",
+          "geoVanDerGrinten3",
+          "geoVanDerGrinten4",
+          "geoWagner",
+          "geoWagner4",
+          "geoWagner6",
+          "geoWagner7",
+          "geoWiechel",
+          "geoWinkel3",
+          // "geoInterruptedHomolosine",
+          // "geoInterruptedSinusoidal",
+          // "geoInterruptedBoggs",
+          // "geoInterruptedSinuMollweide",
+          // "geoInterruptedMollweide",
+          // "geoInterruptedMollweideHemispheres",
+          // "geoInterruptedQuarticAuthalic",
+          "geoPolyhedralButterfly",
+          "geoPolyhedralCollignon",
+          "geoPolyhedralWaterman",
+          "geoGringortenQuincuncial",
+          "geoPeirceQuincuncial",
+          // "conicConformalFrance",
+          // "conicConformalPortugal",
+          // "conicConformalSpain",
+          // "onicConformalEurope",
+          // "conicEquidistantJapan",
+          // "mercatorEcuador",
+          // "transverseMercatorChile"
+        ]
+      },
       description: `Sets the map projection used when displaying topojson and coordinate points.
       All of the projections exported from [d3-geo](https://github.com/d3/d3-geo#projections), [d3-geo-projection](https://github.com/d3/d3-geo-projection#api-reference), and [d3-composite-projections](http://geoexamples.com/d3-composite-projections/) are accepted, whether as the string name (ie. "geoMercator") or the generator function itself.`
     },
@@ -243,7 +365,7 @@ The *value* passed can be a single id to remove, an array of ids, or a filter fu
       type: {
         summary: "string"
       },
-      defaultValue: false,
+      defaultValue: "id",
       table: {
         defaultValue: {
           summary: false
@@ -258,14 +380,14 @@ If not specified, the first key in the array returned from using \`Object.keys\`
       type: {
         summary: "string | function"
       },
-      defaultValue: function(d) { return d.id },
+      defaultValue: "id",
       table: {
         defaultValue: {
           summary: "function",
           detail: `function(d) { return d.id }`
         }
       },
-      control: { type: "text"},
+      control: { type: null},
       description: `Sets the accessor used to map each topojson geometry to it's corresponding data`
     }
   }
