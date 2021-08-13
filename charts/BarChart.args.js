@@ -48,6 +48,7 @@ export const argTypes = assign(
       }
     },
     shape: {
+      defaultValue: "Bar",
       table: {
         defaultValue: {
           summary: "Bar"
