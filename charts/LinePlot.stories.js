@@ -62,13 +62,16 @@ AddingLastValueLabelToLinePlot.args = {
   lineLabels: true,
   shapeConfig: {
     Line: {
-      label: funcify(function(d) {
-        const dataArray = this._filteredData.filter(f => f.id === d.id);
-        const maxX = Math.max(...dataArray.map(f => f.x));
-        const maxData = dataArray.find(f => f.x === maxX);
+      label: funcify(
+        function(d) {
+          const dataArray = this._filteredData.filter(f => f.id === d.id);
+          const maxX = Math.max(...dataArray.map(f => f.x));
+          const maxData = dataArray.find(f => f.x === maxX);
 
-        return `${maxData.y}`;
-      }, "function(d) {const dataArray = this._filteredData.filter(f => f.id === d.id); const maxX = Math.max(...dataArray.map(f => f.x)); const maxData = dataArray.find(f => f.x === maxX); return `${maxData.y}`;}")
+          return `${maxData.y}`;
+        }, 
+        "function(d) {const dataArray = this._filteredData.filter(f => f.id === d.id); const maxX = Math.max(...dataArray.map(f => f.x)); const maxData = dataArray.find(f => f.x === maxX); return `${maxData.y}`;}"
+      )
     }
   },  
   x: "x",
@@ -147,12 +150,18 @@ AddingSecondaryYAxis.args = {
   x: "Year",
   xConfig: {
     labels: [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
-    tickFormat: funcify(function (d) { return `${d * 1}` }, "function (d) {return `${d * 1}`}")
+    tickFormat: funcify(
+      d => `${d * 1}`,
+      "d => `${d * 1}`"
+    )
   },
   y: "Trade Value",
   y2: "Trade Value Growth",
   y2Config: {
-    tickFormat: funcify(function (d) { return `${parseInt(d * 100)}%` }, "function (d) {return `${parseInt(d * 100)}%`}")
+    tickFormat: funcify(
+      d => `${parseInt(d * 100)}%`, 
+      "d => `${parseInt(d * 100)}%`"
+    )
   }
 };
 
@@ -234,12 +243,14 @@ ConfidenceInterval.args = {
   ],
   groupBy: "fruit",
   confidence: [
-    funcify(function (d) {
-      return d.amount - d.moe;
-    }, "function (d) {return d.amount - d.moe;}"),
-    funcify(function (d) {
-      return d.amount + d.moe;
-    }, "function (d) {return d.amount + d.moe;}")
+    funcify(
+      d => d.amount - d.moe, 
+      "d => d.amount - d.moe"
+    ),
+    funcify(
+      d => d.amount + d.moe, 
+      "d => d.amount + d.moe"
+    )
   ],
   confidenceConfig: {
     fillOpacity: 0.3
@@ -270,12 +281,14 @@ CustomDashLinePlot.args = {
   groupBy: "fruit",
   shapeConfig: {
     Line: {
-      strokeDasharray: funcify(function (d) {
-        if (d.fruit === "apple") return "10";
-        if (d.fruit === "banana") return "10 7 3";
-        if (d.fruit === "cherry") return "10 7 5 2";
-        return "0";
-      }, "function (d) {if (d.fruit === 'apple') return '10'; if (d.fruit === 'banana') return '10 7 3'; if (d.fruit === 'cherry') return '10 7 5 2'; return '0';}")
+      strokeDasharray: funcify(
+        d => {
+          if (d.fruit === "apple") return "10";
+          if (d.fruit === "banana") return "10 7 3";
+          if (d.fruit === "cherry") return "10 7 5 2";
+          return "0";
+        }, 
+        "d => {if (d.fruit === 'apple') return '10'; if (d.fruit === 'banana') return '10 7 3'; if (d.fruit === 'cherry') return '10 7 5 2'; return '0';}")
     }
   },
   x: "year",
@@ -333,12 +346,15 @@ LinePlotCustomColor.args = {
   groupBy: "fruit",
   shapeConfig: {
     Line: {
-      stroke: funcify(function (d) {
-        if (d.fruit === "apple") return "green";
-        if (d.fruit === "banana") return "goldenrod";
-        if (d.fruit === "cherry") return "red";
-        return "grey";
-      }, "function (d) {if (d.fruit === 'apple') return 'green'; if (d.fruit === 'banana') return 'goldenrod'; if (d.fruit === 'cherry') return 'red'; return 'grey';}")
+      stroke: funcify(
+        d => {
+          if (d.fruit === "apple") return "green";
+          if (d.fruit === "banana") return "goldenrod";
+          if (d.fruit === "cherry") return "red";
+          return "grey";
+        }, 
+        "d => {if (d.fruit === 'apple') return 'green'; if (d.fruit === 'banana') return 'goldenrod'; if (d.fruit === 'cherry') return 'red'; return 'grey';}"
+      )
     }
   },
   x: "year",
@@ -365,10 +381,12 @@ LinePlotSorting.args = {
       strokeLinecap: "round",
       strokeWidth: 10
     },
-    sort: funcify(function (a, b) {
-      if (a.fruit === "apple") return 1;
-      else return -1;
-    }, "function (a, b) {if (a.fruit === 'apple') return 1; else return -1;")
+    sort: funcify(
+      (a, b) => {
+        if (a.fruit === "apple") return 1;
+        else return -1;
+      }, 
+      "(a, b) => {if (a.fruit === 'apple') return 1; else return -1;}")
   },
   x: "year",
   y: "price"
@@ -633,10 +651,13 @@ PredictionsLinePlot.args = {
   groupBy: ["Type", "Flow"],
   shapeConfig: {
     Line: {
-      strokeDasharray: funcify(function (d) {
-        if (d["Type"] === "Predicted") return "10";
-        return "0";
-      }, "function (d) {if (d['Type'] === 'Predicted') return '10'; return '0'; }")
+      strokeDasharray: funcify(
+        d => {
+          if (d["Type"] === "Predicted") return "10";
+          return "0";
+        }, 
+        "d => {if (d['Type'] === 'Predicted') return '10'; return '0'; }"
+      )
     }
   },
   time: "Year",

@@ -66,16 +66,12 @@ export const argTypes = assign(
       table: {
         defaultValue: {
           summary: "function",
-          defaultValue: `function(a, b) {
-            return this._y(b) - this._y(a);
-          }`
+          defaultValue: `(a, b) => this._y(b) - this._y(a);`
         }
       }
     },
     y2: {
-      defaultValue: function (d) {
-        return this._y(d)
-      },
+      defaultValue: d => this._y(d),
       table: {
         defaultValue: {
           summary: "function"
@@ -84,7 +80,7 @@ export const argTypes = assign(
     },
     y2Config: {
       defaultValue: {
-        tickFormat: function (val) {
+        tickFormat: val => {
           const data = this._formattedData;
           const xMax = data[data.length - 1].x instanceof Date ? data[data.length - 1].x.getTime() : data[data.length - 1].x;
           const endData = data.filter(d => (d.x instanceof Date ? d.x.getTime() : d.x) === xMax);
@@ -100,15 +96,11 @@ export const argTypes = assign(
       }
     },
     y2Sort: {
-      defaultValue: function (a, b) {
-        return this._y(b) - this._y(a);
-      },
+      defaultValue: (a, b) => this._y(b) - this._y(a),
       table: {
         defaultValue: {
           summary: "function",
-          defaultValue: `function(a, b) {
-  return this._y(b) - this._y(a);
-}`
+          defaultValue: `(a, b) => this._y(b) - this._y(a);`
         }
       }
     }

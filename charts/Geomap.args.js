@@ -1,8 +1,44 @@
 import React from "react";
 import Viz from "../primitives/Viz";
 import { assign } from "d3plus-common";
+import * as projections from "d3-geo-projection";
 
 import { Geomap as D3plusGeomap } from "d3plus-react";
+
+const excludedKeys = [
+  "geoArmadillo",
+  "geoBerghaus",
+  "geoChamberlin",
+  "geoGingery",
+  "geoHammerRetroazimuthal",
+  "geoHealpix",
+  "geoModifiedStereographic",
+  "geoTwoPointAzimuthal",
+  "geoInterrupt",
+  "geoInterruptedHomolosine",
+  "geoInterruptedSinusoidal",
+  "geoInterruptedBoggs",
+  "geoInterruptedSinuMollweide",
+  "geoInterruptedMollweide",
+  "geoInterruptedMollweideHemispheres",
+  "geoInterruptedQuarticAuthalic",
+  "geoPolyhedral",
+  "geoProject",
+  "geoQuantize",
+  "geoQuincuncial",
+  "geoStitch",
+  "geoTwoPointEquidistant",
+  "conicConformalFrance",
+  "conicConformalPortugal",
+  "conicConformalSpain",
+  "onicConformalEurope",
+  "conicEquidistantJapan",
+  "mercatorEcuador",
+  "transverseMercatorChile"
+];
+
+const projectionOptions = Object.keys(projections).filter(d => (!d.includes("Raw")) && (!excludedKeys.includes(d)));
+
 export const Geomap = ({ config }) => <D3plusGeomap config={config} />;
 
 export const argTypes = assign(
@@ -79,10 +115,10 @@ Additionally, a custom formatting function can be passed as a second argument to
       type: {
         summary: "function | array"
       },
-      defaultValue: function(d) { return d.point },
+      defaultValue: d => d.point,
       table: {
         defaultValue: {
-          summary: function(d) { return d.point }
+          summary: d => d.point
         }
       },
       control: { type: null },
@@ -139,126 +175,7 @@ Additionally, a custom formatting function can be passed as a second argument to
       },
       control: { 
         type: "select",
-        options: [
-          "geoAzimuthalEqualArea", 
-          "geoAzimuthalEquidistant", 
-          "geoGnomonic", 
-          "geoOrthographic",
-          "geoStereographic",
-          "geoEqualEarth",
-          "geoAlbersUsa",
-          "geoAlbers",
-          "geoConicConformal",
-          "geoConicEqualArea",
-          "geoConicEquidistant",
-          "geoEquirectangular",
-          "geoMercator",
-          "geoTransverseMercator",
-          "geoNaturalEarth1",
-          "geoAiry",
-          "geoAitoff",
-          // "geoArmadillo",
-          "geoAugust",
-          "geoBaker",
-          // "geoBerghaus",
-          "geoBertin1953",
-          "geoBoggs",
-          "geoBonne",
-          "geoBottomley",
-          "geoBromley",
-          // "geoChamberlin",
-          "geoChamberlinAfrica",
-          "geoCollignon",
-          "geoCraig",
-          "geoCraster",
-          "geoCylindricalEqualArea",
-          "geoCylindricalStereographic",
-          "geoEckert1",
-          "geoEckert2",
-          "geoEckert3",
-          "geoEckert4",
-          "geoEckert5",
-          "geoEckert6",
-          "geoEisenlohr",
-          "geoFahey",
-          "geoFoucaut",
-          "geoFoucautSinusoidal",
-          "geoGilbert",
-          // "geoGingery",
-          "geoGinzburg4",
-          "geoGinzburg5",
-          "geoGinzburg6",
-          "geoGinzburg8",
-          "geoGinzburg9",
-          "geoGringorten",
-          "geoGuyou",
-          "geoHammer",
-          // "geoHammerRetroazimuthal",
-          // "geoHealpix",
-          "geoHill",
-          "geoHomolosine",
-          "geoHufnagel",
-          "geoHyperelliptical",
-          "geoKavrayskiy7",
-          "geoLagrange",
-          "geoLarrivee",
-          "geoLaskowski",
-          "geoLittrow",
-          "geoLoximuthal",
-          "geoMiller",
-          // "geoModifiedStereographic",
-          "geoModifiedStereographicAlaska",
-          "geoModifiedStereographicGs48",
-          "geoModifiedStereographicGs50",
-          "geoModifiedStereographicMiller",
-          "geoModifiedStereographicLee",
-          "geoMollweide",
-          "geoMtFlatPolarParabolic",
-          "geoMtFlatPolarQuartic",
-          "geoMtFlatPolarSinusoidal",
-          "geoNaturalEarth2",
-          "geoNellHammer",
-          "geoNicolosi",
-          "geoPatterson",
-          "geoPolyconic",
-          "geoRectangularPolyconic",
-          "geoRobinson",
-          "geoSatellite",
-          "geoSinusoidal",
-          "geoSinuMollweide",
-          "geoTimes",
-          // "geoTwoPointAzimuthal",
-          "geoTwoPointEquidistantUsa",
-          "geoVanDerGrinten",
-          "geoVanDerGrinten2",
-          "geoVanDerGrinten3",
-          "geoVanDerGrinten4",
-          "geoWagner",
-          "geoWagner4",
-          "geoWagner6",
-          "geoWagner7",
-          "geoWiechel",
-          "geoWinkel3",
-          // "geoInterruptedHomolosine",
-          // "geoInterruptedSinusoidal",
-          // "geoInterruptedBoggs",
-          // "geoInterruptedSinuMollweide",
-          // "geoInterruptedMollweide",
-          // "geoInterruptedMollweideHemispheres",
-          // "geoInterruptedQuarticAuthalic",
-          "geoPolyhedralButterfly",
-          "geoPolyhedralCollignon",
-          "geoPolyhedralWaterman",
-          "geoGringortenQuincuncial",
-          "geoPeirceQuincuncial",
-          // "conicConformalFrance",
-          // "conicConformalPortugal",
-          // "conicConformalSpain",
-          // "onicConformalEurope",
-          // "conicEquidistantJapan",
-          // "mercatorEcuador",
-          // "transverseMercatorChile"
-        ]
+        options: projectionOptions
       },
       description: `Sets the map projection used when displaying topojson and coordinate points.
       All of the projections exported from [d3-geo](https://github.com/d3/d3-geo#projections), [d3-geo-projection](https://github.com/d3/d3-geo-projection#api-reference), and [d3-composite-projections](http://geoexamples.com/d3-composite-projections/) are accepted, whether as the string name (ie. "geoMercator") or the generator function itself.`
@@ -349,11 +266,11 @@ Additionally, a custom formatting function can be passed as a second argument to
       type: {
         summary: "number | string | array | function"
       },
-      defaultValue: function(d) { return !["010"].includes(d.id) },
+      defaultValue: d => !["010"].includes(d.id),
       table: {
         defaultValue: {
           summary: "function",
-          detail: `function(d) { return !["010"].includes(d.id) }`
+          detail: `d => !["010"].includes(d.id)`
         }
       },
       control: { type: "array" },
@@ -384,7 +301,7 @@ If not specified, the first key in the array returned from using \`Object.keys\`
       table: {
         defaultValue: {
           summary: "function",
-          detail: `function(d) { return d.id }`
+          detail: `d => d.id`
         }
       },
       control: { type: null},

@@ -56,8 +56,8 @@ StackedAreaAsSharePercentages.args = {
   groupBy: "id",
   stackOffset: "expand",
   yConfig: {
-    tickFormat: funcify(function(d) {
-      return `${formatAbbreviate(d * 100)}%`;
-    }, "function(d) {return `${formatAbbreviate(d * 100)}%`;}")
+    tickFormat: funcify(
+      d => `${formatAbbreviate(d * 100)}%`, 
+      "d => `${formatAbbreviate(d * 100)}%`")
   }
 };

@@ -29,9 +29,10 @@ GettingStarted.args = {
   ],
   groupBy: "fruit",
   discrete: "x",
-  label: funcify(function(d) {
-    return d["label"]
-  }, "function(d) {return d['label']}"),
+  label: funcify(
+    d => d["label"], 
+    "d => d['label']"
+  ),
   x: "year",
   y: "rank",
   y2: "rank"

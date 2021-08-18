@@ -97,9 +97,10 @@ ChangingBoxAndWhiskerEndpointShapes.args = {
   legend: false,
   shapeConfig: {
     whiskerConfig: {
-      endpoint: funcify(function(d) {
-        return d.id === "alpha" ? "Rect" : "Circle"
-      }, "function(d) {return d.id === 'alpha' ? 'Rect' : 'Circle'}")
+      endpoint: funcify(
+        d => d.id === "alpha" ? "Rect" : "Circle", 
+        "d => d.id === 'alpha' ? 'Rect' : 'Circle'"
+      )
     }
   },
   x: "id",
@@ -139,9 +140,10 @@ ChangingBoxAndWhiskerOutlierStyles.args = {
   groupBy: ["id", "value"],
   legend: false,
   shapeConfig: {
-    outlier: funcify(function(d) {
-      return d.id === "alpha" ? "Circle" : "Rect";
-    }, "function(d) {return d.id === 'alpha' ? 'Circle' : 'Rect'}"),
+    outlier: funcify(
+      d => d.id === "alpha" ? "Circle" : "Rect", 
+      "d => d.id === 'alpha' ? 'Circle' : 'Rect'"
+    ),
     outlierConfig: {
       Rect: {
         fill: "green"

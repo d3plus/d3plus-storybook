@@ -19,19 +19,22 @@ GettingStarted.args = {
 export const ChangingCoordinatePointSizes = Template.bind({});
 ChangingCoordinatePointSizes.args = {
   data: "https://d3plus.org/data/city_coords.json",
-    groupBy: "slug",
-    colorScale: "dma_code",
-    label: funcify(function(d) {
-        return d.city + ", " + d.region;
-      }, `function(d) {return d.city + ", " + d.region}`),
-    point: funcify(function(d) {
-      return [d.longitude, d.latitude];
-    }, "function(d) {return [d.longitude, d.latitude]}"),
-    pointSize: funcify(function(d) {
-      return d.dma_code;
-    }, "function(d) {return d.dma_code}"),
-    pointSizeMin: 1,
-    pointSizeMax: 10
+  groupBy: "slug",
+  colorScale: "dma_code",
+  label: funcify(
+    d => d.city + ", " + d.region, 
+    `d => d.city + ", " + d.region`
+  ),
+  point: funcify(
+    d => [d.longitude, d.latitude], 
+    "d => [d.longitude, d.latitude]"
+  ),
+  pointSize: funcify(
+    d => d.dma_code, 
+    "d => d.dma_code"
+  ),
+  pointSizeMin: 1,
+  pointSizeMax: 10
 }
 
 export const ChangingMapProjections = Template.bind({});
@@ -39,7 +42,10 @@ ChangingMapProjections.args = {
   data: [],
   projection: "geoMercator",
   topojson: "https://oec.world/topojson/world-50m.json",
-  topojsonFilter: funcify(function(d) {return d.id !== "ata"}, "function(d) {return d.id !== 'ata'}")
+  topojsonFilter: funcify(
+    d => d.id !== "ata", 
+    "d => d.id !== 'ata'"
+  )
 };
 
 export const ChangingGeomapTiles = Template.bind({});
@@ -89,7 +95,10 @@ CoordinatePointsOnAMap.args = {
   colorScaleConfig: {
     color: ["red", "orange", "yellow", "green", "blue"]
   },
-  point: funcify(function(d) {return [d.longitude, d.latitude]}, "function(d) {return [d.longitude, d.latitude]}")
+  point: funcify(
+    d => [d.longitude, d.latitude], 
+    "d => [d.longitude, d.latitude]"
+  )
 }
 
 export const CustomCoordinatePointZoom = Template.bind({});
@@ -141,7 +150,10 @@ OverridingDefaultColorscaleBehavior.args = {
   },
   projection: "geoMiller",
   topojson: "https://oec.world/topojson/world-50m.json",
-  topojsonFilter: funcify(function(d) {return d.id !== "ata"}, "function(d) {return d.id !== 'ata'}")
+  topojsonFilter: funcify(
+    d => d.id !== "ata", 
+    "d => d.id !== 'ata'"
+  )
 };
 
 export const RemovingBackgroundOceanAndTilesFromAGeomap = Template.bind({});
@@ -151,7 +163,10 @@ RemovingBackgroundOceanAndTilesFromAGeomap.args = {
   colorScale: "Diabetes Prevalence",
   colorScaleConfig: {
     axisConfig: {
-      tickFormat: funcify(function(d) { return `${(d * 100).toFixed(1)}%` }, "function(d) {return `${(d * 100).toFixed(1)}%`}")
+      tickFormat: funcify(
+        d => `${(d * 100).toFixed(1)}%`, 
+        "d => `${(d * 100).toFixed(1)}%`"
+      )
     }
   },
   ocean: "transparent",
@@ -167,7 +182,10 @@ SimpleChoroplethMap.args = {
   colorScale: "Diabetes Prevalence",
   colorScaleConfig: {
     axisConfig: {
-      tickFormat: funcify(function(d) { return `${(d * 100).toFixed(1)}%` }, "function(d) {return `${(d * 100).toFixed(1)}%`}")
+      tickFormat: funcify(
+        d => `${(d * 100).toFixed(1)}%`, 
+        "d =>`${(d * 100).toFixed(1)}%`"
+      )
     }
   },
   projection: "geoAlbersUsa",

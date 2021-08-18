@@ -38,7 +38,7 @@ export const argTypes = assign(
       table: {
         defaultValue: {
           summary: "function",
-          detail: `function(config, arr) {
+          detail: `(config, arr) => {
   const legendIds = arr.map(this._groupBy[this._legendDepth].bind(this)).sort().join();
   const barIds = this._filteredData.map(this._groupBy[this._legendDepth].bind(this)).sort().join();
   if (legendIds === barIds) return false;
