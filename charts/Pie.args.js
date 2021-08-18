@@ -1,24 +1,22 @@
 import React from "react";
 import Viz from "../primitives/Viz";
-import { assign } from "d3plus-common";
 
-import { Pie as D3plusPie } from "d3plus-react";
-export const Pie = ({ config }) => <D3plusPie config={config} />;
+import {Pie as D3plusPie} from "d3plus-react";
+export const Pie = ({config}) => <D3plusPie config={config} />;
 
-export const argTypes = assign(
+export const argTypes = {
 
-  /**
-   * Filters out unused argTypes from the Viz primitive and
-   * overrides any defaults that have been changed in Pie
-   */
-  Object.keys(Viz.argTypes)
-    .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
-    .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
-
-  /**
-   * Pie-specific methods
-   */
-  {
+    /**
+     * Filters out unused argTypes from the Viz primitive and
+     * overrides any defaults that have been changed in Pie
+     */
+    ...Object.keys(Viz.argTypes)
+      .filter(k => !k.match(/^(discrete|shape|zoom.*)$/))
+      .reduce((obj, k) => (obj[k] = Viz.argTypes[k], obj), {}),
+  
+    /**
+     * Pie-specific methods
+     */
     innerRadius: {
       type: {
         summary: "function | number"
@@ -29,7 +27,7 @@ export const argTypes = assign(
           summary: 0
         }
       },
-      control: { type: "number" },
+      control: {type: "number"},
       description: `The pixel value, or function that returns a pixel value, that is used as the inner radius of the Pie (creating a Donut).`
     },
     padAngle: {
@@ -41,7 +39,7 @@ export const argTypes = assign(
           summary: "undefined",
         }
       },
-      control: { type: "number" },
+      control: {type: "number"},
       description: `The padding between each arc, set as a radian value between \`0\` and \`1\`.
       
 If set, this will override any previously set padPixel value.`
@@ -56,7 +54,7 @@ If set, this will override any previously set padPixel value.`
           summary: 0
         }
       },
-      control: { type: "number" },
+      control: {type: "number"},
       description: `The padding between each arc, set as a pixel number value.
       
 By default the value is \`0\`, which shows no padding between each arc.
@@ -73,7 +71,7 @@ If \`padAngle\` is defined, the \`padPixel\` value will not be considered.`
           detail: `(a, b) => b.value - a.value`
         }
       },
-      control: { type: null },
+      control: {type: null},
       description: `A comparator function that sorts the Pie slices.`
     },
     value: {
@@ -90,4 +88,3 @@ If \`padAngle\` is defined, the \`padPixel\` value will not be considered.`
       description: `The accessor key for each data point used to calculate the size of each Pie section.`
     }
   }
-);

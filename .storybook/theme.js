@@ -32,5 +32,5 @@ export default create({
 
   brandTitle: "D3plus",
   brandUrl: "https://d3plus.org",
-  brandImage: "images/logo.svg"
+  brandImage: "images/logo.png"
 });

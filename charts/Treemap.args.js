@@ -2,8 +2,8 @@ import React from "react";
 import Viz from "../primitives/Viz";
 import { assign } from "d3plus-common";
 
-import { Treemap as D3plusTreemap } from "d3plus-react";
-export const Treemap = ({ config }) => <D3plusTreemap config={config} />;
+import {Treemap as D3plusTreemap} from "d3plus-react";
+export const Treemap = ({config}) => <D3plusTreemap config={config} />;
 
 export const argTypes = assign(
 
@@ -51,6 +51,7 @@ export const argTypes = assign(
         type: "select",
         options: ["binary", "dice", "slice", "sliceDice", "squarify", "resquarify"]
       }
+
     }
-  }
+  }  
 );
