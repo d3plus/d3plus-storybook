@@ -2,8 +2,8 @@ import React from "react";
 import Viz from "../primitives/Viz";
 import { assign } from "d3plus-common";
 
-import {Treemap as D3plusTreemap} from "d3plus-react";
-export const Treemap = ({config}) => <D3plusTreemap config={config} />;
+import { Treemap as D3plusTreemap } from "d3plus-react";
+export const Treemap = ({ config }) => <D3plusTreemap config={config} />;
 
 export const argTypes = assign(
 
@@ -46,12 +46,11 @@ export const argTypes = assign(
       },
       description: `Sets the tiling method used when calcuating the size and position of the rectangles.
     
-Can either be a string referring to a d3-hierarchy [tiling method](https://github.com/d3/d3-hierarchy#treemap-tiling), or a custom function in the same format.`,
+  Can either be a string referring to a d3-hierarchy [tiling method](https://github.com/d3/d3-hierarchy#treemap-tiling), or a custom function in the same format.`,
       control: {
         type: "select",
         options: ["binary", "dice", "slice", "sliceDice", "squarify", "resquarify"]
       }
-
     }
-  }  
+  }
 );
