@@ -8,7 +8,7 @@ export default function(args, argTypes) {
    if (
      args[key] !== undefined &&
      (argTypes[key].defaultValue === undefined ||
-        argTypes[key].defaultValue === "function"
+        typeof argTypes[key].defaultValue === "function"
         ? argTypes[key].defaultValue !== args[key]
         : JSON.stringify(argTypes[key].defaultValue) !== JSON.stringify(args[key])
       )
