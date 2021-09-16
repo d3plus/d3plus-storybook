@@ -1,18 +1,18 @@
-import React from 'react';
-import {argTypes, Rings} from './Rings.args';
+import React from "react";
+import {argTypes, Rings as Viz} from "../args/Rings.args";
 import configify from "../helpers/configify";
 import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/Rings",
-  component: Rings,
+  component: Viz,
   argTypes
 };
 
-const Template = (args) => <Rings config={configify(args, argTypes)} />;
+const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const GettingStarted = Template.bind({});
-GettingStarted.args = {
+export const Rings = Template.bind({});
+Rings.args = {
   links: [
     {"source": "alpha", "target": "beta"},
     {"source": "alpha", "target": "gamma"},

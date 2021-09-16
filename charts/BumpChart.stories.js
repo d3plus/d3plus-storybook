@@ -1,18 +1,18 @@
-import React from 'react';
-import {argTypes, BumpChart} from './BumpChart.args';
+import React from "react";
+import {argTypes, BumpChart as Viz} from "../args/BumpChart.args";
 import configify from "../helpers/configify";
 import funcify from "../helpers/funcify";
 
 export default {
-  title: "Charts/BumpChart",
-  component: BumpChart,
+  title: "Charts/Bump Chart",
+  component: Viz,
   argTypes
 };
 
-const Template = (args) => <BumpChart config={configify(args, argTypes)} />;
+const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const GettingStarted = Template.bind({});
-GettingStarted.args = {
+export const BumpChart = Template.bind({});
+BumpChart.args = {
   data: [
     {fruit: "apple", label: "Apple", year: 1, rank: 1},
     {fruit: "apple", label: "Apple", year: 2, rank: 2},
@@ -30,7 +30,7 @@ GettingStarted.args = {
   groupBy: "fruit",
   discrete: "x",
   label: funcify(
-    d => d["label"], 
+    d => d["label"],
     "d => d['label']"
   ),
   x: "year",

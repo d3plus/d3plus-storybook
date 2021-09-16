@@ -1,18 +1,18 @@
-import React from 'react';
-import {argTypes, RadialMatrix} from './RadialMatrix.args';
+import React from "react";
+import {argTypes, RadialMatrix as Viz} from "../args/RadialMatrix.args";
 import configify from "../helpers/configify";
 import funcify from "../helpers/funcify";
 
 export default {
-  title: "Charts/RadialMatrix",
-  component: RadialMatrix,
+  title: "Charts/Radial Matrix",
+  component: Viz,
   argTypes
 };
 
-const Template = (args) => <RadialMatrix config={configify(args, argTypes)} />;
+const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const GettingStarted = Template.bind({});
-GettingStarted.args = {
+export const RadialMatrix = Template.bind({});
+RadialMatrix.args = {
   data: "https://api.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year,Exporter+Continent,Importer+Continent&measures=Trade+Value&Year=2018",
   groupBy: ["Exporter Continent", "Importer Continent"],
   column: "Importer Continent",
@@ -21,14 +21,9 @@ GettingStarted.args = {
   colorScaleConfig: {
     legendConfig: {
       title: "Trade Value"
-    },
-    scale: "jenks"
+    }
   },
-  colorScalePosition: "left",
   title: "Continent to Continent Product Trade",
-  titleConfig: {
-    fontSize: 20
-  },
   tooltipConfig: {
     tbody: [
       ["Trade Value", funcify(
