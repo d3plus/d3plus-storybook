@@ -30,7 +30,6 @@ export default create({
 //   inputTextColor: 'black',
 //   inputBorderRadius: 4,
 
-  brandTitle: "D3plus",
-  brandUrl: "https://d3plus.org",
-  brandImage: "images/logo.png"
+  brandTitle: "<span class=\"logo-d3\">D3</span>plus",
+  brandUrl: "https://d3plus.org"
 });
