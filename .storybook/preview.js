@@ -7,5 +7,11 @@ export const parameters = {
   },
   jsx: {
     showFunctions: true
+  },
+  options: {
+    storySort: {
+      method: "alphabetical",
+      order: ["Introduction", "Installation", "*"]
+    }
   }
 }
