@@ -2,9 +2,9 @@ const path = require("path");
 
 module.exports = {
   stories: [
+    "../docs/**/*.stories.mdx",
     "../charts/**/*.stories.@(mdx|js|jsx|ts|tsx)",
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)"
+    "../advanced/**/*.stories.@(mdx|js|jsx|ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -21,16 +21,5 @@ module.exports = {
         viewport: false
       }
     }
-  ],
-  webpackFinal: async (config) => {
-
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../"),
-    });
-
-    return config;
-
-  }
+  ]
 };

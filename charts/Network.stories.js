@@ -1,18 +1,18 @@
-import React from 'react';
-import {argTypes, Network} from './Network.args';
+import React from "react";
+import {argTypes, Network as Viz} from "../args/Network.args";
 import configify from "../helpers/configify";
 import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/Network",
-  component: Network,
+  component: Viz,
   argTypes
 };
 
-const Template = (args) => <Network config={configify(args, argTypes)} />;
+const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const GettingStarted = Template.bind({});
-GettingStarted.args = {
+export const Network = Template.bind({});
+Network.args = {
   nodes: [
     {id: "alpha", x: 1, y: 1},
     {id: "beta", x: 2, y: 1},
@@ -29,28 +29,3 @@ GettingStarted.args = {
     {source: 5, target: 0}
   ]
 };
-
-export const ForceDirectedNetwork = Template.bind({});
-ForceDirectedNetwork.args = {
-  nodes: [
-    {id: "alpha"},
-    {id: "beta"},
-    {id: "gamma"},
-    {id: "epsilon"},
-    {id: "zeta"},
-    {id: "theta"}
-  ],
-  links: [
-    {source: 0, target: 1, weight: 10},
-    {source: 0, target: 2, weight: 10},
-    {source: 3, target: 4, weight: 10},
-    {source: 3, target: 5, weight: 5},
-    {source: 5, target: 0, weight: 20},
-    {source: 2, target: 1, weight: 12},
-    {source: 4, target: 5, weight: 12}
-  ],
-  linkSize: funcify(
-    d => d.weight,
-    "d => d.weight"
-  )
-}

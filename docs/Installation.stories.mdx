@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Installation" />
+
+# Installation
+
+## ES Modules
+
+D3plus is available as a series of modules, which can be seen in the [Github orgnization](https://github.com/d3plus). For example, to install only the text-wrapping module:
+
+```sh
+npm install d3plus-text
+```
+
+You can then import named functions and classes as ES modules:
+
+```js
+import {TextBox} from "d3plus-text";
+```
+
+## React Components
+
+If you are looking to use the charts in a React environment, the `d3plus-react` module wraps each chart class in a thin React component:
+
+```sh
+npm install d3plus-react
+```
+
+Configuration of the chart is accomplished using the `config` prop:
+
+```jsx
+import {Treemap} from "d3plus-treemap";
+...
+<Treemap
+  config={{
+    data: "myData.csv",
+    groupBy: "id",
+    sum: "value"
+  }} />
+```
+
+A global set of styles can be provided using the "d3plus" context key. This allows you to set base styles on all of your visualizations in one place, often in an external file. A component's config set by props will override global defaults key-by-key using a deep cloning function.
+
+```jsx
+import React, {Component} from "react";
+
+export default class MyApp extends Component {
+
+  getChildContext() {
+
+    return {
+      d3plus: {
+        shapeConfig: {
+          fontFamily: "Comic Sans MS"
+        }
+      }
+    };
+
+  }
+
+  render() {
+
+    return (
+      <main>
+        {/* child components containing visualizations */}
+      </main>
+    );
+
+  }
+
+}
+
+MyApp.childContextTypes = {
+  d3plus: PropTypes.object
+};
+```
+
+## Vanilla JS Environments
+
+Additionally, each module is available from a CDN for vanilla JavaScript environments (bundled with all dependencies):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/d3plus-text@1"></script>
+```
+
+A global `d3plus` object is exported, which contains all of the available methods and classes:
+
+```html
+<script>
+  console.log(d3plus.TextBox);
+</script>
+```
+
+Additionally, a library-wide bundle is also made available, if you are looking to use more than one d3plus module at the same time:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
+```

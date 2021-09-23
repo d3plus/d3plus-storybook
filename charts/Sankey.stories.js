@@ -1,18 +1,17 @@
-import React from 'react';
-import {argTypes, Sankey} from './Sankey.args';
+import React from "react";
+import {argTypes, Sankey as Viz} from "../args/Sankey.args";
 import configify from "../helpers/configify";
-import funcify from "../helpers/funcify";
 
 export default {
   title: "Charts/Sankey",
-  component: Sankey,
+  component: Viz,
   argTypes
 };
 
-const Template = (args) => <Sankey config={configify(args, argTypes)} />;
+const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const GettingStarted = Template.bind({});
-GettingStarted.args = {
+export const Sankey = Template.bind({});
+Sankey.args = {
   links: [
     {source: "alpha", target: "beta"},
     {source: "alpha", target: "gamma"},
