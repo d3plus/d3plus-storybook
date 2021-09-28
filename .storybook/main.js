@@ -7,6 +7,7 @@ module.exports = {
     "../advanced/**/*.stories.@(mdx|js|jsx|ts|tsx)"
   ],
   addons: [
+    "@storybook/addon-google-analytics",
     "@storybook/addon-links",
     {
       name: "@storybook/addon-essentials",
