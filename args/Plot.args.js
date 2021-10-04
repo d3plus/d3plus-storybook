@@ -33,9 +33,9 @@ export const argTypes = assign(
       control: { type: "array" },
       description: `Allows drawing custom shapes to be used as annotations in the provided x/y plot.
 
-This method accepts custom config objects for the [Shape](http://d3plus.org/docs/#Shape) class, either a single config object or an array of config objects.
+This method accepts custom config objects for the [Shape](https://github.com/d3plus/d3plus-shape) class, either a single config object or an array of config objects.
 
-Each config object requires an additional parameter, the "shape", which denotes which [Shape](http://d3plus.org/docs/#Shape) sub-class to use ([Rect](http://d3plus.org/docs/#Rect), [Line](http://d3plus.org/docs/#Line), etc).
+Each config object requires an additional parameter, the "shape", which denotes which [Shape](https://github.com/d3plus/d3plus-shape) sub-class to use ([Rect](https://github.com/d3plus/d3plus-shape#Rect), [Line](https://github.com/d3plus/d3plus-shape#Line), etc).
 
 Annotations will be drawn underneath the data to be displayed.`
     },
@@ -383,7 +383,7 @@ function shapeSort(a, b) {
         }
       },
       control: { type: "object" },
-      description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the x-axis.`
+      description: `A pass-through to the underlying [Axis](https://github.com/d3plus/d3plus-axis) config used for the x-axis.`
     },
     xCutoff: {
       type: {
@@ -411,7 +411,7 @@ function shapeSort(a, b) {
         }
       },
       control: { type: "object" },
-      description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the x2-axis.`
+      description: `A pass-through to the underlying [Axis](https://github.com/d3plus/d3plus-axis) config used for the x2-axis.`
     },
     xDomain: {
       type: {
@@ -508,7 +508,7 @@ function shapeSort(a, b) {
         }
       },
       control: { type: "object" },
-      description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the y-axis.`
+      description: `A pass-through to the underlying [Axis](https://github.com/d3plus/d3plus-axis) config used for the y-axis.`
     },
     yCutoff: {
       type: {
@@ -533,7 +533,7 @@ function shapeSort(a, b) {
         }
       },
       control: { type: "object" },
-      description: `A pass-through to the underlying [Axis](http://d3plus.org/docs/#Axis) config used for the y2-axis.`
+      description: `A pass-through to the underlying [Axis](https://github.com/d3plus/d3plus-axis) config used for the y2-axis.`
     },
     yDomain: {
       type: {
