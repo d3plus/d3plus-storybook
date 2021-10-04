@@ -13,7 +13,7 @@ const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
 export const CoordinatePointMap = Template.bind({});
 CoordinatePointMap.args = {
-  data: "https://d3plus.org/data/city_coords.json",
+  data: "/data/city_coords.json",
   groupBy: "slug",
   colorScale: "dma_code",
   label: funcify(
