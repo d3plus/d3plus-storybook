@@ -172,6 +172,29 @@ VertexMarkersT.args = {
   y: "y"
 };
 
+export const ChangingVertexMarkersStyle = Template.bind({});
+ChangingVertexMarkersStyle.args = {
+  data: [
+    { id: "alpha", x: 4, y: 9 },
+    { id: "alpha", x: 5, y: 17 },
+    { id: "alpha", x: 6, y: 13 },
+    { id: "beta", x: 4, y: 17 },
+    { id: "beta", x: 5, y: 8 },
+    { id: "beta", x: 6, y: 16 },
+    { id: "gamma", x: 4, y: 14 },
+    { id: "gamma", x: 5, y: 9 },
+    { id: "gamma", x: 6, y: 11 }
+  ],
+  groupBy: "id",
+  lineMarkers: true,
+  lineMarkerConfig: {
+    opacity: funcify(d => d.x === 6 ? 1 : 0.25, "d => d.x === 6 ? 1 : 0.25"),
+    r: funcify(d => d.x === 6 ? 6 : 4, "d => d.x === 6 ? 6 : 3")
+  },
+  x: "x",
+  y: "y"
+};
+
 export const ChangingSplining = Template.bind({});
 ChangingSplining.args = {
   data: [
