@@ -31,7 +31,7 @@
     "chromatic": "^5.8.0"
   },
   "dependencies": {
-    "d3plus-react": "^1.0.0",
+    "d3plus-react": "^1.1.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "typescript": "^3.9.9"

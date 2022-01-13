@@ -644,3 +644,13 @@ DottedLinePredictions.args = {
   x: "Year",
   y: "Trade Value"
 };
+
+export const QuarterlyData = Template.bind({});
+QuarterlyData.args = {
+  data: "https://api.datamexico.org/tesseract/data.jsonrecords?cube=fdi_9_quarter_investment&drilldowns=Quarter,Investment+Type&measures=Investment",
+  groupBy: "Investment Type",
+  time: "Quarter",
+  timeline: false,
+  x: "Quarter",
+  y: "Investment"
+};
