@@ -320,6 +320,20 @@ function(config, arr) {
       control: {type: "object"},
       description: `A Legend config that is used for rendering the color legend.`
     },
+    legendFilterInvert: {
+      type: {summary: "boolean | function"},
+      defaultValue: false,
+      table: {
+        category: "Legends",
+        defaultValue: {summary: "false"}
+      },
+      control: {type: "boolean"},
+      description: `Defines the click functionality of categorical legend squares.
+
+When set to false, clicking will hide that category and shift+clicking will solo that category.
+
+When set to true, clicking with solo that category and shift+clicking will hide that category.`
+    },
     legendPadding: {
       type: {summary: "boolean | function"},
       defaultValue: true,
