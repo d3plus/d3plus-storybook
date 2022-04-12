@@ -29,7 +29,7 @@ npm install d3plus-react
 Configuration of the chart is accomplished using the `config` prop:
 
 ```jsx
-import {Treemap} from "d3plus-treemap";
+import {Treemap} from "d3plus-react";
 ...
 <Treemap
   config={{
@@ -73,6 +73,39 @@ export default class MyApp extends Component {
 MyApp.childContextTypes = {
   d3plus: PropTypes.object
 };
+```
+
+## Using Next.js
+
+Since Next.js using server-side generation, you need to wrap your components in a dynamic import block. The following is a simple example to illustrate the point:
+
+```
+import dynamic from "next/dynamic";
+const TreemapCountries = dynamic(
+  () => import("../../components/treemapCountries"),
+  {
+    ssr: false,
+  }
+);
+```
+
+...and your `treemapCountries` component then imports the required d3plus module normally.
+
+```
+import { Treemap } from "d3plus-react";
+
+export default function TreemapCountries() {
+  return (
+    <>
+      <Treemap
+        config={{
+          data,
+           ...
+        }}
+      />
+    </>
+  );
+}
 ```
 
 ## Vanilla JS Environments
