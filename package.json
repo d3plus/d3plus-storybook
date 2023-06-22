@@ -1,12 +1,12 @@
 {
   "name": "d3plus-storybook",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Documentation and examples for the d3plus visualization library.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -s ./static -p 6006 --no-manager-cache",
-    "build-storybook": "build-storybook -s static",
+    "storybook": "storybook dev",
+    "build-storybook": "storybook build",
     "chromatic": "npx chromatic"
   },
   "repository": {
@@ -21,19 +21,23 @@
   },
   "homepage": "https://github.com/d3plus/d3plus-storybook#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@storybook/addon-actions": "^6.3.4",
-    "@storybook/addon-essentials": "^6.3.4",
-    "@storybook/addon-google-analytics": "^6.2.9",
-    "@storybook/addon-links": "^6.3.4",
-    "@storybook/react": "^6.3.4",
-    "babel-loader": "^8.2.2",
-    "chromatic": "^5.8.0"
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@storybook/addon-controls": "^7.0.23",
+    "@storybook/addon-docs": "^7.0.22",
+    "@storybook/addon-links": "^7.0.22",
+    "@storybook/react": "^7.0.22",
+    "@storybook/react-webpack5": "^7.0.22",
+    "babel-loader": "^9.1.2",
+    "chromatic": "^6.19.8",
+    "remark-gfm": "^3.0.1",
+    "storybook": "^7.0.22"
   },
   "dependencies": {
-    "d3plus-react": "^1.1.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "typescript": "^3.9.9"
+    "d3plus-react": "^1.3.3",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "typescript": "^5.1.3"
   }
 }

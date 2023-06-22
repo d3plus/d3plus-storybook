@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Priestley = Template.bind({});
-Priestley.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {element: "alpha",   birth: 2004, death: 2007},
     {element: "epsilon", birth: 2007, death: 2012},

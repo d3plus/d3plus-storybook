@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Sankey = Template.bind({});
-Sankey.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   links: [
     {source: "alpha", target: "beta"},
     {source: "alpha", target: "gamma"},

@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const DonutChart = Template.bind({});
-DonutChart.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {Topping: "Powdered sugar", Sold: 40},
     {Topping: "Cinnamon", Sold: 20},

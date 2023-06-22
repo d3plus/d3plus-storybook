@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const ChoroplethMap = Template.bind({});
-ChoroplethMap.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: "https://datausa.io/api/data?measure=Diabetes%20Prevalence&drilldowns=State&Year=2021",
   groupBy: "ID State",
   colorScale: "Diabetes Prevalence",

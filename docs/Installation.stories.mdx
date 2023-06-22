@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/blocks';
 
 <Meta title="Installation" />
 
@@ -26,86 +26,44 @@ If you are looking to use the charts in a React environment, the `d3plus-react` 
 npm install d3plus-react
 ```
 
-Configuration of the chart is accomplished using the `config` prop:
+A valid d3plus `config` _Object_ needs to be provided to the `config` prop of every visualization.
 
 ```jsx
 import {Treemap} from "d3plus-react";
-...
-<Treemap
-  config={{
-    data: "myData.csv",
-    groupBy: "id",
-    sum: "value"
-  }} />
+
+const methods = {
+  groupBy: "id",
+  data: [
+    {id: "alpha", value: 29},
+    {id: "beta",  value: 10}
+  ],
+  size: d => d.value
+};
+
+<Treemap config={methods} />
 ```
 
-A global set of styles can be provided using the "d3plus" context key. This allows you to set base styles on all of your visualizations in one place, often in an external file. A component's config set by props will override global defaults key-by-key using a deep cloning function.
+Additionally, a global set of styles can be set using the `D3plusContext` Provider. This allows you to set base styles on all of your visualizations in one place, often in an external file. A component's `config` set by props will override global defaults key-by-key using a deep cloning function.
 
 ```jsx
-import React, {Component} from "react";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {D3plusContext} from "d3plus-react";
+import App from "src/App.jsx";
 
-export default class MyApp extends Component {
-
-  getChildContext() {
-
-    return {
-      d3plus: {
-        shapeConfig: {
-          fontFamily: "Comic Sans MS"
-        }
-      }
-    };
-
+const globalConfig = {
+  shapeConfig: {
+    fill: "red"
   }
-
-  render() {
-
-    return (
-      <main>
-        {/* child components containing visualizations */}
-      </main>
-    );
-
-  }
-
-}
-
-MyApp.childContextTypes = {
-  d3plus: PropTypes.object
 };
-```
 
-## Using Next.js
-
-Since Next.js using server-side generation, you need to wrap your components in a dynamic import block. The following is a simple example to illustrate the point:
-
-```
-import dynamic from "next/dynamic";
-const TreemapCountries = dynamic(
-  () => import("../../components/treemapCountries"),
-  {
-    ssr: false,
-  }
+ReactDOM.createRoot(document.getElementById("viz")).render(
+  <React.StrictMode>
+    <D3plusContext.Provider value={globalConfig}>
+      <App />
+    </D3plusContext.Provider>
+  </React.StrictMode>
 );
-```
-
-...and your `treemapCountries` component then imports the required d3plus module normally.
-
-```
-import { Treemap } from "d3plus-react";
-
-export default function TreemapCountries() {
-  return (
-    <>
-      <Treemap
-        config={{
-          data,
-           ...
-        }}
-      />
-    </>
-  );
-}
 ```
 
 ## Vanilla JS Environments

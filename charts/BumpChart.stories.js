@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const BumpChart = Template.bind({});
-BumpChart.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {fruit: "apple", label: "Apple", year: 1, rank: 1},
     {fruit: "apple", label: "Apple", year: 2, rank: 2},

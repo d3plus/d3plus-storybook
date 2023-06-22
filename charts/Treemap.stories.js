@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Treemap = Template.bind({});
-Treemap.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {id: "alpha", value: 29},
     {id: "beta", value: 10},

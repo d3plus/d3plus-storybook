@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const ScatterPlot = Template.bind({});
-ScatterPlot.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {id: "alpha", x: 4, y: 7},
     {id: "beta", x: 5, y: 2},

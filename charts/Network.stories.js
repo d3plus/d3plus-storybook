@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Network = Template.bind({});
-Network.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   nodes: [
     {id: "alpha", x: 1, y: 1},
     {id: "beta", x: 2, y: 1},

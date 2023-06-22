@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const BubblePack = Template.bind({});
-BubblePack.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {parent: "Group 1", id: "alpha", value: 29},
     {parent: "Group 1", id: "beta", value: 10},

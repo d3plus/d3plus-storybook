@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const CoordinatePointMap = Template.bind({});
-CoordinatePointMap.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: "/data/city_coords.json",
   groupBy: "slug",
   colorScale: "dma_code",

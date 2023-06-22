@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const RadarPlot = Template.bind({});
-RadarPlot.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {id: "alpha", axis: "Central",    number: 170.992},
     {id: "alpha", axis: "Kirkdale",   number: 40},

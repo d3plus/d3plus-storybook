@@ -7,6 +7,7 @@
   /** A toString to render the function in storybook */
   // eslint-disable-next-line no-param-reassign
   fn.toString = () => str;
+  fn.toJSON = () => str;
 
   return fn;
 

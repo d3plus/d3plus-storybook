@@ -8,10 +8,6 @@
 
 <style>
 
-  .sbdocs-h1 {
-    margin-bottom: 20px !important;
-  }
-
   .sbdocs-h1, .sbdocs-h2, .sbdocs-h3, .sbdocs-h4, .sbdocs-h5, .sbdocs-h6,
   button {
     font-family: 'Roboto', 'Helvetica Neue', 'HelveticaNeue', 'Helvetica', 'Arial', sans-serif !important;
@@ -24,19 +20,30 @@
     padding: 30px 20px !important;
   }
 
-  .innerZoomElementWrapper > * {
-    height: 60vh;
-    max-height: 500px;
-    min-height: 200px;
+  .sb-main-padded.sb-show-main {
+    background: white;
+    height: 100vh;
+    overflow: hidden;
+    padding: 25px;
   }
 
-  .sb-show-main.sb-main-padded {
-    background: white;
-    overflow: hidden;
-    padding: 0;
+  #storybook-root {
+    display: flex;
+    height: 100%;
+  }
+
+  #storybook-root .docblock-source {
+    margin: 0;
+    width: 100%;
   }
 
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46067436-1"></script>
 <script>
-  window.STORYBOOK_GA_ID = 'UA-46067436-1';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-46067436-1');
 </script>

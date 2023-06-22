@@ -10,6 +10,7 @@ export default create({
   fontCode: "'Roboto Mono', monospace",
 
   brandTitle: "<span class=\"logo-d3\">D3</span>plus",
-  brandUrl: "https://d3plus.org"
+  brandUrl: "https://d3plus.org",
+  brandTarget: '_self'
 
 });

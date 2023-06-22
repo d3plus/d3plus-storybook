@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Rings = Template.bind({});
-Rings.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   links: [
     {"source": "alpha", "target": "beta"},
     {"source": "alpha", "target": "gamma"},

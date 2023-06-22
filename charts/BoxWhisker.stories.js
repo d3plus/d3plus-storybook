@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const BoxWhisker = Template.bind({});
-BoxWhisker.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {id: "alpha", value: 300},
     {id: "alpha", value: 20},

@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const PieChart = Template.bind({});
-PieChart.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: [
     {Type: "Apple pie", Percentage: 30},
     {Type: "Butter pie", Percentage: 20},

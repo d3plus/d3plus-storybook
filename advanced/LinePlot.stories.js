@@ -55,7 +55,12 @@ LineValueLabels.args = {
 
           return `${maxData.y}`;
         },
-        "function(d) {const dataArray = this._filteredData.filter(f => f.id === d.id); const maxX = Math.max(...dataArray.map(f => f.x)); const maxData = dataArray.find(f => f.x === maxX); return `${maxData.y}`;}"
+        `function(d) {
+        const dataArray = this._filteredData.filter(f => f.id === d.id);
+        const maxX = Math.max(...dataArray.map(f => f.x));
+        const maxData = dataArray.find(f => f.x === maxX); 
+        return \`\${maxData.y}\`;
+      }`
       )
     }
   },

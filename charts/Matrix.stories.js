@@ -11,8 +11,8 @@ export default {
 
 const Template = (args) => <Viz config={configify(args, argTypes)} />;
 
-export const Matrix = Template.bind({});
-Matrix.args = {
+export const BasicExample = Template.bind({});
+BasicExample.args = {
   data: "https://api.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year,Exporter+Continent,Importer+Continent&measures=Trade+Value&Year=2018",
   groupBy: ["Exporter Continent", "Importer Continent"],
   column: "Importer Continent",
